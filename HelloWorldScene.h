@@ -11,7 +11,9 @@ public:
     virtual bool init();
     
     // a selector callback
-    void menuCloseCallback(cocos2d::Ref* pSender);
+	void menuCloseCallback(cocos2d::Ref* pSender);
+	void onKeyPressed(EventKeyboard::KeyCode keyCode, Event* event);
+	void onKeyReleased(EventKeyboard::KeyCode keyCode, Event* event);
     
     // implement the "static create()" method manually
     CREATE_FUNC(HelloWorld);
