@@ -3,29 +3,39 @@
 
 #include "cocos2d.h"
 #include <vector>
+#include <iostream>
+#include <iterator>
 USING_NS_CC;
 
 #define explode_end_left 1
 #define explode_end_right 2
 #define explode_end_up 3
 #define explode_end_down 4
-#define explode_line 5
-#define explode_row 6
+#define explode_line_left 5
+#define explode_line_right 6
+#define explode_row_up 7
+#define explode_row_down 8
 
-class Bomb:	public Sprite
+class Bomb:	public Layer
 {
 public:
 	Bomb();
 	~Bomb();
-	int bombNum;//ç‚¸å¼¹ä¸ªæ•°
-	int bombNum_avail;//å‰©ä½™ç‚¸å¼¹ä¸ªæ•°
-	int bombPower;//ç‚¸å¼¹å¨åŠ›
+	Sprite* bomb;
 	Point position;
+	std::vector<Sprite*> explosionSprite;
 
-	static Bomb* create(const char* FileName);
+	virtual bool init();
+	CREATE_FUNC(Bomb);
+	static Bomb* createBombSprite(Point position);
+	Animate* createAnimate(const char *action, int num,int time);
 	void bombDynamic();
 	void bombExplode();
-	void explode(std::vector<Point> &vec_positions, std::vector<int> &vec_types);
+	void deleteBomb();
+	void explode(std::vector<Point>&vec);//vec[0]ÊÇºáÅÅ×î×ó²à£¬vec[1]ÊÇºáÅÅ×îÓÒ£¬vec[2]ÊúÅÅ×îÉÏ£¬vec[3]ÊúÅÅ×îÏÂ
+	void addChildExplosion(float beg, float end, float remain,int tag);
+	void addExplosionAnimate(Point aniPosition, int tag);
+	void deleteExplode();
 };
 
 #endif // !_BOMB_H_INCLUDED

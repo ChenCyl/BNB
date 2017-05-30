@@ -3,54 +3,55 @@
 #include "cocos2d.h"
 #include "Bomb.h"
 
-#define NO_DIRECTION 0		//ç©å®¶åŠ¨ä½œæ–¹å‘
+#define NO_DIRECTION 0		//Íæ¼Ò¶¯×÷·½Ïò
 #define LEFT 1			
 #define RIGHT 2
 #define UP 3
 #define DOWN 4
 
-#define USER 0			//äººç‰©èº«ä»½
+#define USER 0			//ÈËÎïÉí·İ
 #define COMPUTER 1
 
-#define RED 1			//äººç‰©é˜Ÿå±
+#define RED 1			//ÈËÎï¶ÓÊô
 #define GREEN 2
 #define BLUE 3
 #define YELLOW 4
 
-#define STATE_FREE 0	//äººç‰©çŠ¶æ€
+#define STATE_FREE 0	//ÈËÎï×´Ì¬
 #define STATE_BOXED 1
 #define STATE_DIED 2
 
-#define TOOL_SHOE 0		//é“å…·ç§ç±»
+#define TOOL_SHOE 0		//µÀ¾ßÖÖÀà
 #define TOOL_BOMB 1
 #define TOOL_LIQUID 2 
 
 USING_NS_CC;
-//äººç‰©
+//ÈËÎï
 class Figure:public Layer
 {
 public:
 	Figure();
 	~Figure();
-	int type;//äººç‰©ç±»å‹
-	int team;//é˜Ÿä¼
-	int direction;//äººç‰©æ–¹å‘æœ‰4ç§
-	Point position;//äººç‰©åæ ‡
-	Sprite* sprite;//æ˜¾ç¤ºäººç‰©
+	int type;//ÈËÎïÀàĞÍ
+	int team;//¶ÓÎé
+	int direction;//ÈËÎï·½ÏòÓĞ4ÖÖ
+	Point position;//ÈËÎï×ø±ê
+	Sprite* sprite;//ÏÔÊ¾ÈËÎï
 
-	float speed;//é€Ÿåº¦
-	Bomb* myBomb;//ç‚¸å¼¹ç±»å‹
-	int killNum;//æ€æ•Œæ•°
-	int state;//çŠ¶æ€
-	int score;
+	float speed;//ËÙ¶È
+	int killNum;//É±µĞÊı
+	int state;//×´Ì¬
+	int score;//·ÖÊı
+	int bombNum;//Õ¨µ¯¸öÊı
+	int bombNum_avail;//Ê£ÓàÕ¨µ¯¸öÊı
+	int bombPower;//Õ¨µ¯ÍşÁ¦
 	
-	static Figure* createFigureSprite(Point position, int direction,int type, int team);//åˆ›å»ºäººç‰©
-	void figureInit(Point position, int direction, int type, int team);//åˆå§‹åŒ–äººç‰©
+	static Figure* createFigureSprite(Point position, int direction,int type, int team);//´´½¨ÈËÎï
+	void figureInit(Point position, int direction, int type, int team);//³õÊ¼»¯ÈËÎï
 	Animate* createAnimate(int direction, int team, const char*action, int num,int time);
 
 	void Move(int myDirection, bool i);
 	void DoStand();
-	void SetBomb();
 	void CollectTool(unsigned int i);
 	void BeBoxed();
 	void BeSaved();
