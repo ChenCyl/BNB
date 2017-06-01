@@ -1,16 +1,20 @@
-#include "SceneManger.h"
+#include "SceneManager.h"
 #include "loadlayer.h"
 #include "chooselayer.h"
 #include "gamelayer.h"
 #include "finishlayer.h"
-void SceneManger::createloadscene()
+#include "serverlayer.h"
+#include <iostream>
+#include "cocos2d.h"
+USING_NS_CC;
+void SceneManager::createloadscene()
 {
 	openscene = Scene::create();
 	loadlayer *layer = loadlayer::create();
 	layer->tsm = this;
 	openscene->addChild(layer);
 }
-void SceneManger::gochoosescene()
+void SceneManager::gochoosescene()
 {
 	choosescene = Scene::create();
 	chooselayer *layer = chooselayer::create();
@@ -22,7 +26,7 @@ void SceneManger::gochoosescene()
 
 
 }
-void SceneManger::gogamescene()
+void SceneManager::gogamescene()
 {
 	gamescene = Scene::create();
 	gamelayer *layer = gamelayer::create();
@@ -34,7 +38,19 @@ void SceneManger::gogamescene()
 
 
 }
-void SceneManger::gofinishscene()
+void SceneManager::gogamescene(int &figure ,int &map)
+{
+	gamescene = Scene::create();
+	gamelayer *layer = gamelayer::create();
+	layer->tsm = this;
+	gamescene->addChild(layer);
+
+	Director::getInstance()->replaceScene(gamescene);
+
+
+
+}
+void SceneManager::gofinishscene()
 {
 	finishscene = Scene::create();
 	finishlayer *layer = finishlayer::create();
@@ -42,5 +58,15 @@ void SceneManger::gofinishscene()
 	finishscene->addChild(layer);
 
 	Director::getInstance()->replaceScene(finishscene);
+
+}
+void SceneManager::goserverscene()
+{
+	serverscene = Scene::create();
+	serverlayer *layer = serverlayer::create();
+	layer->tsm = this;
+	serverscene->addChild(layer);
+
+	Director::getInstance()->replaceScene(serverscene);
 
 }
