@@ -20,13 +20,16 @@ Figure* Figure::createFigureSprite(Point position, int direction, int type, int 
 	CC_SAFE_DELETE(figure);
 	return NULL;
 }
+
 void Figure::figureInit(Point myPosition, int myDirection, int myType, int myTeam) {
 	position = myPosition;
 	direction = myDirection;
 	type = myType;
 	team = myTeam;
-	speed = 1.0;
-	myBomb=Bomb::create("bomb1.png");
+	speed = 5.0;
+	bombNum = 1;
+	bombNum_avail = 1;
+	bombPower = 1;
 	killNum = 0;
 	state = STATE_FREE;
 	auto* m_frameCache = SpriteFrameCache::getInstance();
@@ -35,7 +38,6 @@ void Figure::figureInit(Point myPosition, int myDirection, int myType, int myTea
 	sprite->setPosition(position);
 	addChild(sprite,1);
 }
-
 
 Animate* Figure::createAnimate(int direction, int team, const char*action, int num,int time) {
 	auto* m_frameCache = SpriteFrameCache::getInstance();
@@ -47,7 +49,7 @@ Animate* Figure::createAnimate(int direction, int team, const char*action, int n
 	}
 	Animation* animation = Animation::createWithSpriteFrames(frameArray);
 	animation->setLoops(time);
-	animation->setDelayPerUnit(0.13f);
+	animation->setDelayPerUnit(0.12f);
 	return Animate::create(animation);
 }
 
@@ -90,13 +92,6 @@ void Figure::DoStand() {
 	sprite->runAction(stand);
 }
 
-void Figure::SetBomb() {
-	myBomb->position = position;
-	myBomb->setPosition(position);
-	addChild(myBomb);
-	myBomb->bombDynamic();
-	--(myBomb->bombNum_avail);
-}
 void Figure::CollectTool(unsigned int tool_type) {
 	switch (tool_type)
 	{
@@ -104,10 +99,10 @@ void Figure::CollectTool(unsigned int tool_type) {
 		speed += 0.5;
 		break;
 	case TOOL_BOMB:
-		++(myBomb->bombNum);
+		++bombNum;
 		break;
 	case TOOL_LIQUID:
-		++(myBomb->bombPower);
+		++bombPower;
 		break;
 	}
 }
@@ -144,14 +139,10 @@ void Figure::Win() {
 	sprite->runAction(win);
 }
 
-
-
 bool Figure::init() {
 	if (!Layer::init()) {
 		return false;
 	}
-	
-
 	return true;
 }
 
