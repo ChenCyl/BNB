@@ -12,11 +12,11 @@ Player_one::~Player_one()
 {
 }
 
-Player_one* Player_one::createFigureSprite(Point position, int direction, int type, int team) {
+Player_one* Player_one::createFigureSprite(Point position, int direction, int type, int team,int tag) {
 	Player_one* figure = new Player_one();
 	if (figure&&figure->init()) {
 		figure->autorelease();
-		figure->figureInit(position, direction, type, team);
+		figure->figureInit(position, direction, type, team,tag);
 		return figure;
 	}
 	CC_SAFE_DELETE(figure);
@@ -41,24 +41,45 @@ bool Player_one::init() {
 }
 void Player_one::update(float dt) {
 	Node::update(dt);
-	auto leftArrow = EventKeyboard::KeyCode::KEY_LEFT_ARROW;
-	auto rightArrow = EventKeyboard::KeyCode::KEY_RIGHT_ARROW;
-	auto upArrow = EventKeyboard::KeyCode::KEY_UP_ARROW;
-	auto downArrow = EventKeyboard::KeyCode::KEY_DOWN_ARROW;
 	if (state == STATE_FREE) {
-		if (isKeyPressed(leftArrow)) {
-			Move(LEFT, true);
-		}
-		else {
-			if (isKeyPressed(rightArrow)) {
-				Move(RIGHT, true);
-			}
-			else {
-				DoStand();
-			}
+		EventKeyboard::KeyCode delegateKey = isKeyPressed();
+		switch (delegateKey) {
+		case EventKeyboard::KeyCode::KEY_LEFT_ARROW:
+			myHelloworld->figureMove(tag, LEFT);
+			break;
+		case EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
+			myHelloworld->figureMove(tag, RIGHT);
+			break;
+		case EventKeyboard::KeyCode::KEY_UP_ARROW:
+			myHelloworld->figureMove(tag, UP);
+			break;
+		case EventKeyboard::KeyCode::KEY_DOWN_ARROW:
+			myHelloworld->figureMove(tag, DOWN);
+			break;
+		case EventKeyboard::KeyCode::KEY_SPACE:
+				if (bombNum_avail > 0) {
+					--bombNum_avail;
+					myHelloworld->putBomb(tag, position);
+					scheduleOnce(schedule_selector(Player_one::recoverBomb), 4.4f);
+				}
+				break;
+		default:
+			DoStand();
+			break;
 		}
 	}
 }
-bool  Player_one::isKeyPressed(EventKeyboard::KeyCode keyCode) {
-	return keys[keyCode] == 1 ? 1 : 0;
+
+EventKeyboard::KeyCode Player_one::isKeyPressed() {
+	auto map_it = keys.cbegin();
+	while (map_it != keys.cend()) {
+		if (map_it->second == 1) {
+			if (map_it->first == EventKeyboard::KeyCode::KEY_LEFT_ARROW || map_it->first == EventKeyboard::KeyCode::KEY_RIGHT_ARROW || map_it->first == EventKeyboard::KeyCode::KEY_UP_ARROW || map_it->first == EventKeyboard::KeyCode::KEY_DOWN_ARROW || map_it->first == EventKeyboard::KeyCode::KEY_SPACE)
+			{
+				return map_it->first;
+			}
+		}
+		map_it++;
+	}
+	return EventKeyboard::KeyCode::KEY_0;
 }

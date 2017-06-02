@@ -10,22 +10,23 @@ Figure::~Figure()
 {
 }
 
-Figure* Figure::createFigureSprite(Point position, int direction, int type, int team) {
+Figure* Figure::createFigureSprite(Point position, int direction, int type, int team,int tag) {
 	Figure* figure = new Figure();
 	if (figure&&figure->init()) {
 		figure->autorelease();
-		figure->figureInit(position, direction, type, team);
+		figure->figureInit(position, direction, type, team,tag);
 		return figure;
 	}
 	CC_SAFE_DELETE(figure);
 	return NULL;
 }
 
-void Figure::figureInit(Point myPosition, int myDirection, int myType, int myTeam) {
+void Figure::figureInit(Point myPosition, int myDirection, int myType, int myTeam,int mytag) {
 	position = myPosition;
 	direction = myDirection;
 	type = myType;
 	team = myTeam;
+	tag = mytag;
 	speed = 5.0;
 	bombNum = 1;
 	bombNum_avail = 1;
@@ -111,13 +112,18 @@ void Figure::BeBoxed() {
 	state = STATE_BOXED;
 	sprite->stopAllActions();
 	auto* beboxed = createAnimate(NO_DIRECTION, team, "beboxed", 4,-1); 
-		sprite->runAction(beboxed);
+	sprite->runAction(beboxed);
+	scheduleOnce(schedule_selector(Figure::Die), 9.0f);
 }
 
-void Figure::Die() {
+void Figure::Die(float dt) {
+	if (state != STATE_BOXED) {
+		return;
+	}
 	state = STATE_DIED;
 	sprite->stopAllActions();
 	auto* died = createAnimate(NO_DIRECTION, team, "died", 5,1); 
+	position = Vec2(4000, 4000);
 	auto* callFunc = CallFunc::create(CC_CALLBACK_0(Figure::Delete, this));
 	auto* sequence = Sequence::create(died, callFunc, NULL);
 	sprite->runAction(sequence);
@@ -148,4 +154,8 @@ bool Figure::init() {
 
 void Figure::Delete() {
 	removeChild(sprite, true);
+}
+
+void Figure::recoverBomb(float dt) {
+	++bombNum_avail;
 }

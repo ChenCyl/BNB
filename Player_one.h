@@ -11,10 +11,10 @@ public:
 
 	std::map<EventKeyboard::KeyCode, bool> keys;
 
-	bool  isKeyPressed(EventKeyboard::KeyCode keyCode);
+	EventKeyboard::KeyCode isKeyPressed();
 	void update(float dt) override;
 	virtual bool init();
 	CREATE_FUNC(Player_one);
-	static Player_one* createFigureSprite(Point position, int direction, int type, int team);
+	static Player_one* createFigureSprite(Point position, int direction, int type, int team,int tag);
 };
 #endif
