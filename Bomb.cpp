@@ -79,7 +79,7 @@ void Bomb::explode(float dt) {
 	addExplosionAnimate(bombRange[1], explode_end_right);
 	addExplosionAnimate(bombRange[2], explode_end_up);
 	addExplosionAnimate(bombRange[3], explode_end_down);
-	myHelloWorld->bombifPlayer(bombRange);
+	myGamelayer->bombifPlayer(bombRange);
 	scheduleOnce(schedule_selector(Bomb::deleteExplode), 0.5f);
 }
 

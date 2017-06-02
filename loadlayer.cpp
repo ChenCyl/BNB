@@ -1,6 +1,6 @@
 #include "loadlayer.h"
 #include "cocos2d.h"
-#include "curl/curl.h"
+
 USING_NS_CC;
 using namespace cocos2d;
 bool loadlayer::init()

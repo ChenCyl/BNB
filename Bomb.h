@@ -7,8 +7,8 @@
 #include <iterator>
 #include <algorithm>
 #include <numeric>
-#include "HelloWorldScene.h"
-class HelloWorld;
+#include "gamelayer.h"
+class gamelayer;
 USING_NS_CC;
 
 #define explode_end_left 1
@@ -29,7 +29,7 @@ public:
 	Point position;
 	std::vector<Sprite*> explosionSprite;
 	std::vector<Point> bombRange;
-	HelloWorld* myHelloWorld;
+	gamelayer* myGamelayer;
 
 	virtual bool init();
 	CREATE_FUNC(Bomb);

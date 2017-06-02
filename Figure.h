@@ -2,8 +2,8 @@
 #define _FIGURE_H_INCLUDED
 #include "cocos2d.h"
 #include "Bomb.h"
-#include "HelloWorldScene.h"
-class HelloWorld;
+#include "gamelayer.h"
+class gamelayer;
 #define NO_DIRECTION 0		//玩家动作方向
 #define LEFT 1			
 #define RIGHT 2
@@ -48,7 +48,7 @@ public:
 	int bombNum;//炸弹个数
 	int bombNum_avail;//剩余炸弹个数
 	int bombPower;//炸弹威力
-	HelloWorld* myHelloworld;
+	gamelayer* myGamelayer;
 	
 	static Figure* createFigureSprite(Point position, int direction,int type, int team,int tag);//创建人物
 	void figureInit(Point position, int direction, int type, int team,int tag);//初始化人物

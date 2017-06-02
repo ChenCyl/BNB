@@ -45,21 +45,21 @@ void Player_se::update(float dt) {
 		EventKeyboard::KeyCode delegateKey = isKeyPressed();
 		switch (delegateKey) {
 		case EventKeyboard::KeyCode::KEY_A:
-			myHelloworld->figureMove(tag, LEFT);
+			myGamelayer->figureMove(tag, LEFT);
 			break;
 		case EventKeyboard::KeyCode::KEY_D:
-			myHelloworld->figureMove(tag, RIGHT);
+			myGamelayer->figureMove(tag, RIGHT);
 			break;
 		case EventKeyboard::KeyCode::KEY_W:
-			myHelloworld->figureMove(tag, UP);
+			myGamelayer->figureMove(tag, UP);
 			break;
 		case EventKeyboard::KeyCode::KEY_S:
-			myHelloworld->figureMove(tag, DOWN);
+			myGamelayer->figureMove(tag, DOWN);
 			break;
 		case EventKeyboard::KeyCode::KEY_F:
 			if (bombNum_avail > 0) {
 				--bombNum_avail;
-				myHelloworld->putBomb(tag, position);
+				myGamelayer->putBomb(tag, position);
 				scheduleOnce(schedule_selector(Player_se::recoverBomb), 4.4f);
 			};
 			break;
