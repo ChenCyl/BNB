@@ -14,7 +14,7 @@ bool TiledMap::init()
     {
         return false;
     }
-	_map = TMXTiledMap::create("map1.tmx");
+	_map = TMXTiledMap::create("map1zlib.tmx");
 	addChild(_map);
     
     auto visibleSize = Director::getInstance()->getVisibleSize();
@@ -91,6 +91,7 @@ Point TiledMap::PositionFromTileCoord(Point pos) {
 }
 void TiledMap::bombTheProp(Point bombPos, int bombPower) {//传入炮弹的position和bombpower
 	//炸出道具之前将该位置的最大范围和威力比较
+	srand((int)time(NULL));
 	Point tileCoord = this->tileCoordFromPosition(bombPos);
 	std::vector<int> num(4, bombPower);
 	for (int i = 0; i < 4; i++) {
@@ -109,9 +110,8 @@ void TiledMap::bombTheProp(Point bombPos, int bombPower) {//传入炮弹的position和
 			ValueMap propValueMap = prop.asValueMap();
 			std::string canExplode = propValueMap["CanExplode"].asString();			
 			if (canExplode == "true") {	
-				srand((int)time(NULL));
-				int gid = rand() % 6 + 10;
-				_collisionAndProp->setTileGID(gid, tileCoord);
+				int gid = rand() % 6 + 21;//6个随机数从gid=21开始，有3个是道具，3个是空白，也就是道具概率为1/2
+				_collisionAndProp->setTileGID(gid, Point(tileCoord.x + i, tileCoord.y));
 			}
 		}
 	}
@@ -125,9 +125,8 @@ void TiledMap::bombTheProp(Point bombPos, int bombPower) {//传入炮弹的position和
 			ValueMap propValueMap = prop.asValueMap();
 			std::string canExplode = propValueMap["CanExplode"].asString();
 			if (canExplode == "true") {
-				srand((int)time(NULL));
-				int gid = rand() % 6 + 10;
-				_collisionAndProp->setTileGID(gid, tileCoord);
+				int gid = rand() % 6 + 21;
+				_collisionAndProp->setTileGID(gid, Point(tileCoord.x, tileCoord.y + i));
 			}
 		}
 	}
@@ -185,4 +184,26 @@ std::vector<int> TiledMap::calculateBombRange(int x, int y) {
 		}
 	}
 	return vec;
+}
+int TiledMap::eatTool(cocos2d::Point pos) {
+	Point tileCoord = this->tileCoordFromPosition(pos);
+	int tileGid = _collisionAndProp->getTileGIDAt(tileCoord);
+	if (tileGid > 0) {
+		Value prop = _map->getPropertiesForGID(tileGid);
+		ValueMap propValueMap = prop.asValueMap();
+		std::string tool = propValueMap["Tool"].asString();
+		if (tool == "shoe") {
+			_collisionAndProp->removeTileAt(tileCoord);
+			return TOOL_SHOE;
+		}
+		if (tool == "bomb") {
+			_collisionAndProp->removeTileAt(tileCoord);
+			return TOOL_BOMB;
+		}
+		if (tool == "liquid") {
+			_collisionAndProp->removeTileAt(tileCoord);
+			return TOOL_LIQUID;
+		}
+	}
+	return 0;
 }
