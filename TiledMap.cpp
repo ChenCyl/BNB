@@ -14,7 +14,7 @@ bool TiledMap::init()
     {
         return false;
     }
-	_map = TMXTiledMap::create("map1zlib.tmx");
+	_map = TMXTiledMap::create("map1.tmx");
 	addChild(_map);
     
     auto visibleSize = Director::getInstance()->getVisibleSize();
@@ -28,6 +28,7 @@ bool TiledMap::init()
 
 	_collisionAndProp = _map->getLayer("layer2");
 	_collisionAndProp->setVisible(true);
+	_land = _map->getLayer("layer1");
 
 	//初始化m_bombRange坐标是瓦片地图式以左上角为零点
 	for (int i = 0; i < 15; i++) {
@@ -109,9 +110,15 @@ void TiledMap::bombTheProp(Point bombPos, int bombPower) {//传入炮弹的position和
 			Value prop = _map->getPropertiesForGID(tileGid);
 			ValueMap propValueMap = prop.asValueMap();
 			std::string canExplode = propValueMap["CanExplode"].asString();			
+			std::string tool = propValueMap["Tool"].asString();
 			if (canExplode == "true") {	
-				int gid = rand() % 6 + 21;//6个随机数从gid=21开始，有3个是道具，3个是空白，也就是道具概率为1/2
-				_collisionAndProp->setTileGID(gid, Point(tileCoord.x + i, tileCoord.y));
+				if (tool == "shoe" || tool == "liquid" || tool == "bomb") {
+					_collisionAndProp->removeTileAt(Point(tileCoord.x + i, tileCoord.y));
+				}
+				else {
+					int gid = rand() % 6 + 21;//6个随机数从gid=21开始，有3个是道具，3个是空白，也就是道具概率为1/2
+					_collisionAndProp->setTileGID(gid, Point(tileCoord.x + i, tileCoord.y));
+				}
 			}
 		}
 	}
@@ -124,12 +131,19 @@ void TiledMap::bombTheProp(Point bombPos, int bombPower) {//传入炮弹的position和
 			Value prop = _map->getPropertiesForGID(tileGid);
 			ValueMap propValueMap = prop.asValueMap();
 			std::string canExplode = propValueMap["CanExplode"].asString();
+			std::string tool = propValueMap["Tool"].asString();
 			if (canExplode == "true") {
-				int gid = rand() % 6 + 21;
-				_collisionAndProp->setTileGID(gid, Point(tileCoord.x, tileCoord.y + i));
+				if (tool == "shoe" || tool == "liquid" || tool == "bomb") {
+					_collisionAndProp->removeTileAt(Point(tileCoord.x, tileCoord.y + i));
+				}
+				else {
+					int gid = rand() % 6 + 21;//6个随机数从gid=21开始，有3个是道具，3个是空白，也就是道具概率为1/2
+					_collisionAndProp->setTileGID(gid, Point(tileCoord.x, tileCoord.y + i));
+				}
 			}
 		}
 	}
+	int i = 0;
 }
 std::vector<int> TiledMap::calculateBombRange(int x, int y) {
 	int left = x, right = 14 - x, up = y, down = 12 - y;
@@ -206,4 +220,19 @@ int TiledMap::eatTool(cocos2d::Point pos) {
 		}
 	}
 	return 0;
+}
+std::vector<Point> TiledMap::calculateBomRangPoint(Point bombPos, int bombPower) {
+	std::vector<Point> vec(4, bombPos);
+	Point tileCoord = this->tileCoordFromPosition(bombPos);
+	std::vector<int> num(4, bombPower);
+	for (int i = 0; i < 4; i++) {
+		if (m_bombRange[tileCoord][i] < bombPower) {
+			num[i] = m_bombRange[tileCoord][i];
+		}
+	}
+	vec.push_back(Vec2(bombPos.x - num[0] * 40, bombPos.y));
+	vec.push_back(Vec2(bombPos.x + num[1] * 40, bombPos.y));
+	vec.push_back(Vec2(bombPos.x, bombPos.y - num[2] * 40));
+	vec.push_back(Vec2(bombPos.x, bombPos.y + num[2] * 40));
+	return vec;
 }
