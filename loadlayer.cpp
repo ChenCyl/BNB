@@ -7,24 +7,17 @@ bool loadlayer::init()
 {
 	Size winSize = Director::getInstance()->getWinSize();
 
-   /* auto label = Label::createWithSystemFont("Game","",32);
-    label->setPosition(Vec2(220, 220));
-	this->addChild(label,1);//¼ÓÔØ³¡¾°*/
-
-
 	auto sprite = Sprite::create("BeginScene2.png");
 
 	sprite->setPosition(Vec2(winSize.width *0.5, winSize.height*0.5));
 	this->addChild(sprite,0);
 
-
-
-	MenuItemLabel *menuItem = MenuItemLabel::create(Label::createWithSystemFont("Start","", 30), CC_CALLBACK_1(loadlayer::menucallback, this));
+	MenuItemLabel *menuItem = MenuItemLabel::create(Label::createWithSystemFont("Client","", 30), CC_CALLBACK_1(loadlayer::menucallback, this));
 	menuItem->setColor(Color3B(0, 0, 0));
 	menuItem->setTag(101);
 	menuItem->setPosition(Vec2(winSize.width *0.8, winSize.height*0.2));
 
-	MenuItemLabel *menuItem_2 = MenuItemLabel::create(Label::createWithSystemFont("Return","", 30), CC_CALLBACK_1(loadlayer::menucallback, this));
+	MenuItemLabel *menuItem_2 = MenuItemLabel::create(Label::createWithSystemFont("Server","", 30), CC_CALLBACK_1(loadlayer::menucallback, this));
 	menuItem_2->setColor(Color3B(0, 0, 0));
 	menuItem_2->setTag(102);
 	menuItem_2->setPosition(Vec2(winSize.width *0.8, winSize.height*0.1));
@@ -42,28 +35,17 @@ void loadlayer::menucallback(Ref *psender)
 	{
 	case 101:
 	{
-		tsm->goserverscene();
+		tsm->goClientScene();
 	}
 		break;
 	case 102:
 	{
-		Director::getInstance()->end();
-		exit(0);
+		tsm->goserverscene();
 	}
 
 		break;
 
 	default:
 		break;
- 
-
-
 	}
-
-
-
-
 }
-
-
-

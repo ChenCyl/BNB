@@ -16,13 +16,17 @@
 class chooselayer :public Layer
 {
 public:
-	int user;
+	int userOne=0,userTwo=0;
 	int map;
+	int chooseNum;
+	bool isClient;
 	CREATE_FUNC(chooselayer);
 	virtual bool init();
 	void menucallback(Ref *psender);
 	void figurecallback(Ref *psender);
 	void mapcallback(Ref *psender);
+	void showFigureChoose(float y=100);
+	void chooselayerInit();
 public:
 	SceneManager *tsm;
 	

@@ -4,6 +4,8 @@
 #include "gamelayer.h"
 #include "finishlayer.h"
 #include "serverlayer.h"
+#include "clientLayer.h"
+
 #include <iostream>
 #include "cocos2d.h"
 USING_NS_CC;
@@ -14,13 +16,16 @@ void SceneManager::createloadscene()
 	layer->tsm = this;
 	openscene->addChild(layer);
 }
-void SceneManager::gochoosescene()
+void SceneManager::gochoosescene(int chooseNum,bool isClient)
 {
 	choosescene = Scene::create();
 	chooselayer *layer = chooselayer::create();
 	layer->tsm = this;
+	layer->chooseNum = chooseNum;
+	layer->isClient = isClient;
+	layer->chooselayerInit();
 	choosescene->addChild(layer);
-
+	
 	Director::getInstance()->replaceScene(choosescene);
 
 
@@ -35,14 +40,28 @@ void SceneManager::gogamescene()
 
 	Director::getInstance()->replaceScene(gamescene);
 
-
-
 }
-void SceneManager::gogamescene(int &figure ,int &map)
+void SceneManager::goLoadScene() {
+	loadScene = Scene::create();
+	loadlayer *layer = loadlayer::create();
+	layer->tsm = this;
+	loadScene->addChild(layer);
+
+	Director::getInstance()->replaceScene(loadScene);
+}
+void SceneManager::gogamescene(int &chooseNum, int &userOne, int &userTwo, int &map)
 {
 	gamescene = Scene::create();
 	gamelayer *layer = gamelayer::create();
 	layer->tsm = this;
+	if (chooseNum == 2) {
+		layer->playerOne = 1;layer->playerSe = 1;/*layer->playerAi = 2;*/
+		layer->figureTeam[0] = userOne;
+		layer->figureTeam[1] = userTwo;
+	}else {
+		layer->figureTeam[0] = userOne;
+	}
+	layer->gamelayerInit();
 	gamescene->addChild(layer);
 
 	Director::getInstance()->replaceScene(gamescene);
@@ -68,5 +87,14 @@ void SceneManager::goserverscene()
 	serverscene->addChild(layer);
 
 	Director::getInstance()->replaceScene(serverscene);
+
+}
+void SceneManager::goClientScene() {
+	clientScene = Scene::create();
+	clientLayer *layer = clientLayer::create();
+	layer->tsm = this;
+	clientScene->addChild(layer);
+
+	Director::getInstance()->replaceScene(clientScene);
 
 }

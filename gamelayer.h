@@ -4,6 +4,7 @@
 #include "SceneManager.h"
 #include "Figure.h"
 #include "Bomb.h"
+#include "TiledMap.h"
 USING_NS_CC;
 #define RED 1
 #define GREEN 2
@@ -21,13 +22,15 @@ public:
 	CREATE_FUNC(gamelayer);
 	virtual bool init();
 	void menucallback(Ref *psender);
+	void gamelayerInit();
 
 public:
 	SceneManager *tsm;
-
+	std::map<int, int> figureTeam;
 	int playerOne = 1;
-	int playerSe = 1;
+	int playerSe = 0;
 	int playerAi = 0;
+	TiledMap* myMap;
 	//	TMXTiledMap* map;//实际上应该是一个map类的对象;
 	//	list<Tool*> toolManager;管理所有的道具;
 	std::vector<Figure*> players;
@@ -44,5 +47,6 @@ public:
 
 	//放置炸弹：
 	void putBomb(int playerTag, Point position);
+	/*void showTool(float dt);*/
 
 };

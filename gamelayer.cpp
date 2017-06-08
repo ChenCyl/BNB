@@ -2,6 +2,8 @@
 #include "SimpleAudioEngine.h"
 #include "Player_one.h"
 #include "Player_se.h"
+#include "TiledMap.h"
+#include "cocos2d.h"
 #include <math.h>
 #include <iterator>
 #include <algorithm>
@@ -26,19 +28,15 @@ bool gamelayer::init()
 	menu->setPosition(Point::ZERO);
 	this->addChild(menu);
 
+	return true;
+};
+
+void gamelayer::gamelayerInit() {
+
 	loadMap();
 	loadFigure();
 
-	
-
-	auto sprite = Sprite::create("gamemap1.png");
-	sprite->setPosition(Vec2(winSize.width *0.34, winSize.height*0.5));
-	this->addChild(sprite, 0);
-
-	
-
-	return true;
-};
+}
 void gamelayer::menucallback(Ref *psender)
 {
 	switch (((MenuItem *)psender)->getTag())
@@ -62,27 +60,25 @@ void gamelayer::menucallback(Ref *psender)
 }
 
 void gamelayer::loadMap() {
-	Size winSize = Director::getInstance()->getWinSize();
-	auto sprite = Sprite::create("gamemap1.png");
-	sprite->setPosition(Vec2(winSize.width *0.34, winSize.height*0.5));
-	this->addChild(sprite, 0);
-	
+	myMap = TiledMap::createTiledMap();
+	addChild(myMap, 0);
 }
 
 void gamelayer::loadFigure() {
 	Size winSize = Director::getInstance()->getWinSize();
 	Point mapSize = Vec2(winSize.width *0.34, winSize.height*0.5);
-	
+	int figureNum = 0;
 	for (int i = 0;i < playerOne;i++) {
 		Player_one* player1 = Player_one::createFigureSprite(Vec2(mapSize.x/2+25,
-			mapSize.y/ 2 + 50), DOWN, USER, BLUE, 0);
+			mapSize.y/ 2 + 50), DOWN, USER, figureTeam[figureNum+i], 0);
 		player1->myGamelayer = this;
 		players.push_back(player1);
 		addChild(player1, 3);
+		figureNum++;
 	}
 	for (int i = 0;i < playerSe;i++) {
 		Player_se* player2 = Player_se::createFigureSprite(Vec2(mapSize.x / 2 - 25,
-			mapSize.y / 2 + 50), DOWN, USER, RED, 1);
+			mapSize.y / 2 + 50), DOWN, USER, figureTeam[figureNum+i], 1);
 		player2->myGamelayer = this;
 		players.push_back(player2);
 		addChild(player2, 3);
@@ -90,9 +86,8 @@ void gamelayer::loadFigure() {
 }
 
 void gamelayer::figureMove(int tag, int direction) {
-	bool canMove = true;
+	bool canMove = !myMap->isCollision(players[tag]->position,direction);
 	players[tag]->Move(direction, (canMove&&moveifPlayer(tag)));
-
 }
 
 void gamelayer::putBomb(int playerTag, Point position) {
@@ -104,7 +99,7 @@ void gamelayer::putBomb(int playerTag, Point position) {
 	myBomb->bombDynamic();
 	std::vector<Point> bombRange = { Vec2(mP.x - 40 * bombPower,mP.y),Vec2(mP.x + 40 * bombPower,mP.y),Vec2(mP.x,mP.y + 40 * bombPower),Vec2(mP.x,mP.y - 40 * bombPower) };
 	myBomb->initExplode(bombRange);
-
+	myMap->bombTheProp(mP, bombPower);
 }
 
 bool gamelayer::moveifPlayer(int doerTag) {
@@ -155,3 +150,4 @@ void gamelayer::bombifPlayer(std::vector<Point>&vec) {
 		}
 	}
 }
+
