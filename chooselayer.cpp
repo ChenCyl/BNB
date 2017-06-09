@@ -48,7 +48,7 @@ void chooselayer::menucallback(Ref *psender)
 	{
 	case 101:
 	{
-		tsm->gogamescene(chooseNum,userOne,userTwo,map);
+		tsm->gogamescene(chooseNum,userOne,userTwo,map,this,isClient);
 	}
 	break;
 	case 102:

@@ -49,11 +49,12 @@ void SceneManager::goLoadScene() {
 
 	Director::getInstance()->replaceScene(loadScene);
 }
-void SceneManager::gogamescene(int &chooseNum, int &userOne, int &userTwo, int &map)
+void SceneManager::gogamescene(int &chooseNum, int &userOne, int &userTwo, int &map,Layer* theLayer,bool isClient)
 {
 	gamescene = Scene::create();
 	gamelayer *layer = gamelayer::create();
 	layer->tsm = this;
+	layer->isClient = isClient;
 	if (chooseNum == 2) {
 		layer->playerOne = 1;layer->playerSe = 1;/*layer->playerAi = 2;*/
 		layer->figureTeam[0] = userOne;

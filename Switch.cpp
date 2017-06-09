@@ -25,7 +25,7 @@ void Switch::switchInit(int msceneType, int mgameType, bool misGamelayer) {
 	sceneType = msceneType;
 	gameType = mgameType;
 	isGamelayer = misGamelayer;
-
+	//‘§º”‘ÿ±≥æ∞“Ù¿÷”Î“Ù–ß
 	if (!isGamelayer) {
 		for (int i = 1;i < 3;++i) {
 			CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadBackgroundMusic(String::createWithFormat("bg%d.mp3", i)->getCString());
@@ -36,6 +36,13 @@ void Switch::switchInit(int msceneType, int mgameType, bool misGamelayer) {
 		for (int i = 1;i < 10;++i) {
 			CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadEffect(String::createWithFormat("effect%d.wav", i)->getCString());
 		}
+	}
+	//≤•∑≈±≥æ∞“Ù¿÷
+	if (isGamelayer) {
+		CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic(String::createWithFormat("bg%d.mp3", gameType)->getCString(), true);
+	}
+	else {
+		sceneType % 2 == 0 ? CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("bg1.mp3", true) : CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("bg2.mp3", true);
 	}
 	auto* switchBG = Sprite::create("background.png");
 	auto* switchOn = Sprite::create("on.png");
@@ -53,15 +60,10 @@ void Switch::change(Object* pSender,Control::EventType event) {
 	if (event == Control::EventType::VALUE_CHANGED) {
 		auto* s = (ControlSwitch*)pSender;
 		if (s->isOn()) {
-			if (isGamelayer) {
-				CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic(String::createWithFormat("bg%d.mp3", gameType)->getCString(), true);
-			}
-			else {
-				sceneType % 2 == 0 ? CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("bg1.mp3", true) : CocosDenshion::SimpleAudioEngine::sharedEngine()->playBackgroundMusic("bg2.mp3", true);
-			}
+				CocosDenshion::SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
 		}
 		else {
-			CocosDenshion::SimpleAudioEngine::sharedEngine()->stopBackgroundMusic();
+			CocosDenshion::SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
 		}
 	}
 }

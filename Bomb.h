@@ -30,6 +30,7 @@ public:
 	std::vector<Sprite*> explosionSprite;
 	std::vector<Point> bombRange;
 	gamelayer* myGamelayer;
+	int bombPower;
 
 	virtual bool init();
 	CREATE_FUNC(Bomb);
@@ -43,6 +44,7 @@ public:
 	void addExplosionAnimate(Point aniPosition, int tag);
 	void deleteExplode(float dt);
 	void initExplode(std::vector<Point>&vec);//vec[0]是横排最左侧，vec[1]是横排最右，vec[2]竖排最上，vec[3]竖排最下
+	void showTool(float dt);
 };
 
 #endif // !_BOMB_H_INCLUDED

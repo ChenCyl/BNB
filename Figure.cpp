@@ -27,7 +27,7 @@ void Figure::figureInit(Point myPosition, int myDirection, int myType, int myTea
 	type = myType;
 	team = myTeam;
 	tag = mytag;
-	speed = 5.0;
+	speed = 9.0;
 	bombNum = 1;
 	bombNum_avail = 1;
 	bombPower = 1;
@@ -37,6 +37,7 @@ void Figure::figureInit(Point myPosition, int myDirection, int myType, int myTea
 	m_frameCache->addSpriteFramesWithFile("figure.plist", "figure.png");
 	sprite = Sprite::createWithSpriteFrameName(String::createWithFormat("stand%d%d1.png", team, direction)->getCString());
 	sprite->setPosition(position);
+	sprite->setAnchorPoint(ccp(0.5, 0.3));
 	addChild(sprite,1);
 }
 
@@ -50,7 +51,7 @@ Animate* Figure::createAnimate(int direction, int team, const char*action, int n
 	}
 	Animation* animation = Animation::createWithSpriteFrames(frameArray);
 	animation->setLoops(time);
-	animation->setDelayPerUnit(0.12f);
+	animation->setDelayPerUnit(0.1f);
 	return Animate::create(animation);
 }
 
@@ -100,8 +101,11 @@ void Figure::CollectTool(unsigned int tool_type) {
 		speed += 0.5;
 		break;
 	case TOOL_BOMB:
+	{	
 		++bombNum;
+		++bombNum_avail;
 		break;
+	}
 	case TOOL_LIQUID:
 		++bombPower;
 		break;
