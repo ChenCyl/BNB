@@ -16,7 +16,7 @@
 class chooselayer :public Layer
 {
 public:
-	int userOne=0,userTwo=0;
+	int userOne=RED,userTwo=BLUE;
 	int map;
 	int chooseNum;
 	bool isClient;

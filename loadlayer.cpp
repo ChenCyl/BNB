@@ -1,6 +1,6 @@
 #include "loadlayer.h"
 #include "cocos2d.h"
-
+#include "Switch.h"
 USING_NS_CC;
 using namespace cocos2d;
 bool loadlayer::init()
@@ -25,9 +25,9 @@ bool loadlayer::init()
 	auto menu = Menu::create(menuItem, menuItem_2, NULL);
 	menu->setPosition(Point::ZERO);
 	this->addChild(menu);
-	    
-		
-    return true;
+	auto* mySwitch = Switch::createSwitch(1, 0, false);
+	addChild(mySwitch);
+	return true;
 }
 void loadlayer::menucallback(Ref *psender)
 {
