@@ -35,7 +35,7 @@ bool countDownBar::init() {
 	barBG = Sprite::create("barBG.png");
 	barBG->setAnchorPoint(Vec2(0, 1));
 	barBG->setScaleX(6);
-	barBG->setPosition(Vec2(100,570));
+	barBG->setPosition(Vec2(148,597));
 	addChild(barBG);
 	CountDownBar = Sprite::create("bar.png");
 	CountDownBar->setAnchorPoint(Vec2(0, 0));
@@ -45,7 +45,7 @@ bool countDownBar::init() {
 	label->setAnchorPoint(Vec2(0, 1));
 	label->setFontFillColor(Color3B(240, 248, 255));
 	
-	label->setPosition(Vec2(600, 570));
+	label->setPosition(Vec2(650, 597));
 	addChild(label);
 	return true;
 }

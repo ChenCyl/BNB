@@ -2,6 +2,7 @@
 #include "SimpleAudioEngine.h"
 #include "Player_one.h"
 #include "Player_se.h"
+#include "Player_ai.h"
 #include "TiledMap.h"
 #include "cocos2d.h"
 #include <math.h>
@@ -78,7 +79,7 @@ void gamelayer::loadFigure() {
 	Point mapSize = Vec2(winSize.width *0.34, winSize.height*0.5);
 	int figureNum = 0;
 	for (int i = 0;i < playerOne;i++) {
-		Player_one* player1 = Player_one::createFigureSprite(Vec2(myMap->_figureOriginX, myMap->_figureOriginY-30), DOWN, USER, figureTeam[figureNum+i], 0);
+		Player_one* player1 = Player_one::createFigureSprite(Vec2(myMap->_figureOriginX, myMap->_figureOriginY-30), DOWN, USER, figureTeam[i], i);
 		player1->myGamelayer = this;
 		players.push_back(player1);
 		addChild(player1, 3);
@@ -87,10 +88,24 @@ void gamelayer::loadFigure() {
 
 	for (int i = 0;i < playerSe;i++) {
 		Player_se* player2 = Player_se::createFigureSprite(Vec2(mapSize.x / 2 - 25,
-			mapSize.y / 2 + 50), DOWN, USER, figureTeam[figureNum+i], 1);
+			mapSize.y / 2 + 50), DOWN, USER, figureTeam[figureNum], figureNum);
 		player2->myGamelayer = this;
 		players.push_back(player2);
 		addChild(player2, 3);
+		figureNum++;
+	}
+
+	if (isClient) {
+
+		teamInitForAi(figureNum);
+
+		for (int i = 0;i < 4 - playerSe - playerOne;i++) {
+			Player_ai* player_ai = Player_ai::createFigureSprite(Vec2(myMap->_figureOriginX+35, myMap->_figureOriginY + 40*(i+1)), DOWN, COMPUTER, figureTeam[figureNum], figureNum);
+			player_ai->myGamelayer = this;
+			players.push_back(player_ai);
+			addChild(player_ai, 3);
+			figureNum++;
+		}
 	}
 
 	for (auto& figure : players) {
@@ -128,27 +143,27 @@ void gamelayer::loadFigure() {
 
 void gamelayer::loadBar() {
 	CountDownBar = countDownBar::createCountBar(FULL_TIME);
-	addChild(CountDownBar);
+	addChild(CountDownBar,1);
 }
 
 void gamelayer::figureMove(int tag, int direction) {
-	bool canMove = !myMap->isCollision(players[tag]->position,direction);
-	players[tag]->Move(direction, (canMove&&moveifPlayer(tag)));
-	getTool(tag, players[tag]->position);
+	bool canMove = !myMap->isCollision(players[tag]->position,direction);//判断该人物朝该方向走是否会遇到障碍物
+	players[tag]->Move(direction, (canMove&&moveifPlayer(tag)));//执行人物走动
+	getTool(tag, players[tag]->position);//判断走到的位置是否有道具，有的话就捡起来
 }
 
 void gamelayer::putBomb(int playerTag, Point position) {
-	Point mP = players[playerTag]->position;//转换坐标
+	Point mP = players[playerTag]->position;//将现在坐标转换为所在瓦片的中心坐标
 	mP = myMap->tileCoordFromPosition(mP);
 	mP = myMap->PositionFromTileCoord(mP);
 	int bombPower = players[playerTag]->bombPower;
-	auto myBomb = Bomb::createBombSprite(mP);
+	auto myBomb = Bomb::createBombSprite(mP);//创建并放炸弹
 	myBomb->myGamelayer = this;
 	myBomb->bombPower = bombPower;
 	addChild(myBomb, 1);
 	myBomb->bombDynamic();
-	std::vector<Point> bombRange = myMap->calculateBomRangPoint(mP, bombPower);
-	myBomb->initExplode(bombRange);
+	std::vector<Point> bombRange = myMap->calculateBomRangPoint(mP, bombPower);//计算炸弹所炸最远范围
+	myBomb->initExplode(bombRange);//炸弹爆炸
 }
 
 bool gamelayer::moveifPlayer(int doerTag) {
@@ -290,65 +305,66 @@ void gamelayer::myUpdate(float dt) {
 				}
 			}
 		}
-		/*scheduleOnce(schedule_selector(), 1.0f);*/  //展示得分的函数
+		scheduleOnce(schedule_selector(gamelayer::gameOver), 3.0f);  //展示得分的函数
 		return;
 	}
 
-	//时间未到，但有人赢了
+	//时间未到，但有人赢了,游戏结束
 	if (timeLeft > 0) {
 		timeLeft -= dt;
 		CountDownBar->barUpdate(timeLeft, FULL_TIME);
 		//客户端版：
 		if (isClient) {
-			////做出来ai的情况下：ai全死或者玩家全死游戏结束
-			//if (aiAllDie + userAllDie == 1) {
-			//	unschedule(schedule_selector(gamelayer::myUpdate));
-			//	if (aiAllDie) {
-			//		for (auto& figure:user) {
-			//			figure->Win();
-			//			winPlayers.push_back(figure);
-			//		}
-			//	}
-			//	else {
-			//		for (auto& figure : ai) {
-			//			figure->Win();
-			//			winPlayers.push_back(figure);
-			//		}
-			//	}
-			//}
-			///*scheduleOnce(schedule_selector(), 1.0f);*/  //展示得分的函数
-			//return;
-
-			//暂时做成没有ai的：只剩一组队伍则胜利
-			if (greenAllDie + redAllDie + blueAllDie + yellowAllDie == 3) {
+			//做出来ai的情况下：ai全死或者玩家全死游戏结束
+			if (aiAllDie + userAllDie == 1) {
 				unschedule(schedule_selector(gamelayer::myUpdate));
-				if (!greenAllDie) {
-					for (auto& figure : green) {
+				if (aiAllDie) {
+					for (auto& figure:user) {
 						figure->Win();
 						winPlayers.push_back(figure);
 					}
 				}
-				if (!redAllDie) {
-					for (auto& figure : red) {
+				else {
+					for (auto& figure : ai) {
 						figure->Win();
 						winPlayers.push_back(figure);
 					}
 				}
-				if (!blueAllDie) {
-					for (auto& figure : blue) {
-						figure->Win();
-						winPlayers.push_back(figure);
-					}
-				}
-				if (!yellowAllDie) {
-					for (auto& figure : yellow) {
-						figure->Win();
-						winPlayers.push_back(figure);
-					}
-				}
-				/*scheduleOnce(schedule_selector(), 1.0f);*/  //展示得分的函数
+				scheduleOnce(schedule_selector(gamelayer::gameOver), 1.0f);  //展示得分的函数
 				return;
 			}
+			
+
+			////做成没有ai的：只剩一组队伍则胜利
+			//if (greenAllDie + redAllDie + blueAllDie + yellowAllDie == 3) {
+			//	unschedule(schedule_selector(gamelayer::myUpdate));
+			//	if (!greenAllDie) {
+			//		for (auto& figure : green) {
+			//			figure->Win();
+			//			winPlayers.push_back(figure);
+			//		}
+			//	}
+			//	if (!redAllDie) {
+			//		for (auto& figure : red) {
+			//			figure->Win();
+			//			winPlayers.push_back(figure);
+			//		}
+			//	}
+			//	if (!blueAllDie) {
+			//		for (auto& figure : blue) {
+			//			figure->Win();
+			//			winPlayers.push_back(figure);
+			//		}
+			//	}
+			//	if (!yellowAllDie) {
+			//		for (auto& figure : yellow) {
+			//			figure->Win();
+			//			winPlayers.push_back(figure);
+			//		}
+			//	}
+			//	/*scheduleOnce(schedule_selector(), 1.0f);*/  //展示得分的函数
+			//	return;
+			//}
 		}
 		//联机版：
 		if (!isClient) {//仅剩一组没死光算胜利
@@ -378,10 +394,58 @@ void gamelayer::myUpdate(float dt) {
 						winPlayers.push_back(figure);
 					}
 				}
-				/*scheduleOnce(schedule_selector(), 1.0f);*/  //展示得分的函数
+				scheduleOnce(schedule_selector(gamelayer::gameOver), 1.0f);  //展示得分的函数
 				return;
 			}
 		}
 	}
+
+}
+
+void gamelayer::teamInitForAi(int figureNum) {
+	if (playerSe + playerOne == 2)
+	{
+		if (figureTeam[0] + figureTeam[1] != 5)
+		{
+			figureTeam[figureNum] = 5 - figureTeam[0];
+			figureTeam[figureNum + 1] = 5 - figureTeam[1];
+		}
+		else {
+			if (figureTeam[0] == 1 || figureTeam[0] == 4) {
+				figureTeam[figureNum] = 2;
+				figureTeam[figureNum + 1] = 3;
+			}
+			else {
+				figureTeam[figureNum] = 1;
+				figureTeam[figureNum + 1] = 4;
+			}
+		}
+	}
+	else {
+		figureTeam[figureNum] = 5 - figureTeam[0];
+		if (figureTeam[0] == 1 || figureTeam[0] == 4) {
+			figureTeam[figureNum + 1] = 2;
+			figureTeam[figureNum + 2] = 3;
+		}
+		else {
+			figureTeam[figureNum + 1] = 1;
+			figureTeam[figureNum + 2] = 4;
+		}
+	}
+
+}
+
+void gamelayer::gameOver(float dt) {
+	auto* label = LabelTTF::create("GAME_OVER", "Arial", 50);
+	label->setPosition(Vec2(450, 300));
+	addChild(label,5);
+	label->setFontFillColor(Color3B(240, 248, 255));
+	scheduleOnce(schedule_selector(gamelayer::finishGame), 4.0f);
+}
+
+void gamelayer::finishGame(float dt) {
+
+	unscheduleAllSelectors();
+	tsm->gofinishscene();
 
 }

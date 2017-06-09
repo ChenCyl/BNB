@@ -36,8 +36,8 @@ public:
 	int playerAi = 0;
 	float timeLeft = FULL_TIME;
 	bool isClient;
-
 	TiledMap* myMap;
+
 	countDownBar* CountDownBar;
 	SceneManager *tsm;
 
@@ -55,19 +55,25 @@ public:
 	void loadFigure();
 	void loadMap();
 	void loadBar();
+	void teamInitForAi(int figureNum);
 	//人物移动：
 	void figureMove(int tag, int direction);
 	//碰撞检测：
 	
-	bool moveifPlayer(int doerTag);
-	void bombifPlayer(std::vector<Point>&vec);
+	bool moveifPlayer(int doerTag);//移动时遇到玩家，若所遇是被困敌人，就执行kill；所遇是被困队友，就执行save；
+	void bombifPlayer(std::vector<Point>&vec);//检测炸弹是否炸到了人物
 
 	//放置炸弹：
 	void putBomb(int playerTag, Point position);
 	
+	//有道具就捡道具，没道具就算了：
 	void getTool(int tag, Point position);
 
-	//实时更新：
+	//实时更新，检测游戏是否结束：
 	void myUpdate(float dt);
 
+	//简单地写了一个gameover的函数，分数榜待完善
+	void gameOver(float dt);
+
+	void finishGame(float dt);
 };

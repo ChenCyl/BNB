@@ -38,7 +38,7 @@ public:
 	int direction;//人物方向有4种
 	Point position;//人物坐标
 	Sprite* sprite;//显示人物
-	int tag;
+	int tag;//人物是gamelayer层内的players[tag]
 
 
 	float speed;//速度
@@ -48,11 +48,11 @@ public:
 	int bombNum;//炸弹个数
 	int bombNum_avail;//剩余炸弹个数
 	int bombPower;//炸弹威力
-	gamelayer* myGamelayer;
+	gamelayer* myGamelayer;//所在的游戏层
 	
 	static Figure* createFigureSprite(Point position, int direction,int type, int team,int tag);//创建人物
 	void figureInit(Point position, int direction, int type, int team,int tag);//初始化人物
-	Animate* createAnimate(int direction, int team, const char*action, int num,int time);
+	Animate* createAnimate(int direction, int team, const char*action, int num,int time);//创建动画
 
 	void Move(int myDirection, bool i);
 	void DoStand();

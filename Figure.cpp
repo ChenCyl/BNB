@@ -98,7 +98,7 @@ void Figure::CollectTool(unsigned int tool_type) {
 	switch (tool_type)
 	{
 	case TOOL_SHOE:
-		speed += 0.5;
+		speed += 3.0;
 		break;
 	case TOOL_BOMB:
 	{	
@@ -107,7 +107,11 @@ void Figure::CollectTool(unsigned int tool_type) {
 		break;
 	}
 	case TOOL_LIQUID:
-		++bombPower;
+	{
+		if (bombPower <= 6){++bombPower;}
+		break;
+	}
+	default:
 		break;
 	}
 }
