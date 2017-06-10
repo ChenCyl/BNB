@@ -81,13 +81,13 @@ bool TiledMap::isCollision(cocos2d::Point pos, int direction) {
 }
 
 Point TiledMap::tileCoordFromPosition(Point position) {
-	int x = position.x / _map->getTileSize().width;
-	int y = ((_map->getMapSize().height * _map->getTileSize().height) - position.y) / _map->getTileSize().height;
+	int x = (position.x - 20 ) / _map->getTileSize().width;
+	int y = ((_map->getMapSize().height * _map->getTileSize().height) - (position.y - 40)) / _map->getTileSize().height;
 	return Point(x, y);
 }
 Point TiledMap::PositionFromTileCoord(Point pos) {
-	int x = pos.x * 40 + 20;
-	int y = (13 - pos.y) * 40 - 20;
+	int x = pos.x * 40 + 20 + 20;
+	int y = (13 - pos.y) * 40 - 20 + 40;
 	return Point(x, y);
 }
 void TiledMap::bombTheProp(Point bombPos, int bombPower) {//传入炮弹的position和bombpower
@@ -230,9 +230,9 @@ std::vector<Point> TiledMap::calculateBomRangPoint(Point bombPos, int bombPower)
 			num[i] = m_bombRange[tileCoord][i];
 		}
 	}
-	vec.push_back(Vec2(bombPos.x - num[0] * 40, bombPos.y));
-	vec.push_back(Vec2(bombPos.x + num[1] * 40, bombPos.y));
-	vec.push_back(Vec2(bombPos.x, bombPos.y - num[2] * 40));
-	vec.push_back(Vec2(bombPos.x, bombPos.y + num[2] * 40));
+	vec[0] = (Vec2(bombPos.x - num[0] * 40, bombPos.y));
+	vec[1] = (Vec2(bombPos.x + num[1] * 40, bombPos.y));
+	vec[2] = (Vec2(bombPos.x, bombPos.y - num[2] * 40));
+	vec[3] = (Vec2(bombPos.x, bombPos.y + num[2] * 40));
 	return vec;
 }
