@@ -14,7 +14,7 @@ bool TiledMap::init()
     {
         return false;
     }
-	_map = TMXTiledMap::create("map1.tmx");
+	_map = TMXTiledMap::create("map11.tmx");
 	addChild(_map);
     
     auto visibleSize = Director::getInstance()->getVisibleSize();
@@ -31,11 +31,11 @@ bool TiledMap::init()
 	_land = _map->getLayer("layer1");
 
 	//初始化m_bombRange坐标是瓦片地图式以左上角为零点
-	for (int i = 0; i < 15; i++) {
+	/*for (int i = 0; i < 15; i++) {
 		for (int j = 0; j < 13; j++) {
-			m_bombRange[Vec2(i, j)] = calculateBombRange(i, j);
+			m_bombrange[vec2(i, j)] = calculatebombrange(i, j);
 		}
-	}
+	}*/
 
     return true;
 }
@@ -53,16 +53,16 @@ bool TiledMap::isCollision(cocos2d::Point pos, int direction) {
 	Point tileCoord;
 	switch (direction) {
 	case LEFT:
-		tileCoord = this->tileCoordFromPosition(Vec2(pos.x - 10, pos.y));
+		tileCoord = this->tileCoordFromPosition(Vec2(pos.x - 15, pos.y));
 		break;
 	case RIGHT:
-		tileCoord = this->tileCoordFromPosition(Vec2(pos.x + 10, pos.y));
+		tileCoord = this->tileCoordFromPosition(Vec2(pos.x + 15, pos.y));
 		break;
 	case UP:
-		tileCoord = this->tileCoordFromPosition(Vec2(pos.x, pos.y + 10));
+		tileCoord = this->tileCoordFromPosition(Vec2(pos.x, pos.y + 15));
 		break;
 	case DOWN:
-		tileCoord = this->tileCoordFromPosition(Vec2(pos.x, pos.y - 10));
+		tileCoord = this->tileCoordFromPosition(Vec2(pos.x, pos.y - 15));
 		break;
 	}
 	int tileGid = _collisionAndProp->getTileGIDAt(tileCoord);
@@ -81,27 +81,23 @@ bool TiledMap::isCollision(cocos2d::Point pos, int direction) {
 }
 
 Point TiledMap::tileCoordFromPosition(Point position) {
+	/*int x = (position.x - 20 ) / _map->getTileSize().width;
+	int y = ((_map->getMapSize().height * _map->getTileSize().height) - (position.y - 40)) / _map->getTileSize().height;
+	return Point(x, y);*/
 	int x = position.x / _map->getTileSize().width;
 	int y = ((_map->getMapSize().height * _map->getTileSize().height) - position.y) / _map->getTileSize().height;
 	return Point(x, y);
 }
 Point TiledMap::PositionFromTileCoord(Point pos) {
-	int x = pos.x * 40 + 20;
-	int y = (13 - pos.y) * 40 - 20;
+	int x = pos.x * _map->getTileSize().width + _map->getTileSize().width / 2;
+	int y = (_map->getMapSize().height - pos.y) *  _map->getTileSize().height - _map->getTileSize().height / 2;
 	return Point(x, y);
 }
+
 void TiledMap::bombTheProp(Point bombPos, int bombPower) {//传入炮弹的position和bombpower
-	//炸出道具之前将该位置的最大范围和威力比较
 	srand((int)time(NULL));
 	Point tileCoord = this->tileCoordFromPosition(bombPos);
-	std::vector<int> num(4, bombPower);
-	for (int i = 0; i < 4; i++) {
-		if (m_bombRange[tileCoord][i] < bombPower) {
-			num[i] = m_bombRange[tileCoord][i];
-		}
-	}
-	//开始炸
-	for (int i = -num[0]; i <= num[1]; i++) {
+	for (int i = -_bombRange[0]; i <= _bombRange[1]; i++) {
 		if (i == 0) {
 			continue;
 		}
@@ -122,7 +118,7 @@ void TiledMap::bombTheProp(Point bombPos, int bombPower) {//传入炮弹的position和
 			}
 		}
 	}
-	for (int i = -num[3]; i <= num[2]; i++) {
+	for (int i = -_bombRange[3]; i <= _bombRange[2]; i++) {
 		if (i == 0) {
 			continue;
 		}
@@ -143,62 +139,61 @@ void TiledMap::bombTheProp(Point bombPos, int bombPower) {//传入炮弹的position和
 			}
 		}
 	}
-	int i = 0;
 }
-std::vector<int> TiledMap::calculateBombRange(int x, int y) {
-	int left = x, right = 14 - x, up = y, down = 12 - y;
-	std::vector<int> vec = { left, right, up, down};
-	int tileGid;
-	for (int i = 1; i <= left; i++) {
-		tileGid = _collisionAndProp->getTileGIDAt(Point(x - i, y));
-		if (tileGid > 0) {
-			Value prop = _map->getPropertiesForGID(tileGid);
-			ValueMap propValueMap = prop.asValueMap();
-			std::string canExplode = propValueMap["CanExplode"].asString();
-			if (canExplode == "false") {
-				left = i - 1;
-				break;
-			}
-		}
-	}
-	for (int i = 1; i <= right; i++) {
-		tileGid = _collisionAndProp->getTileGIDAt(Point(x + i, y));
-		if (tileGid > 0) {
-			Value prop = _map->getPropertiesForGID(tileGid);
-			ValueMap propValueMap = prop.asValueMap();
-			std::string canExplode = propValueMap["CanExplode"].asString();
-			if (canExplode == "false") {
-				right = i - 1;
-				break;
-			}
-		}
-	}
-	for (int i = 1; i <= up; i++) {
-		tileGid = _collisionAndProp->getTileGIDAt(Point(x, y - i));
-		if (tileGid > 0) {
-			Value prop = _map->getPropertiesForGID(tileGid);
-			ValueMap propValueMap = prop.asValueMap();
-			std::string canExplode = propValueMap["CanExplode"].asString();
-			if (canExplode == "false") {
-				up = i - 1;
-				break;
-			}
-		}
-	}
-	for (int i = 1; i <= down; i++) {
-		tileGid = _collisionAndProp->getTileGIDAt(Point(x, y + i));
-		if (tileGid > 0) {
-			Value prop = _map->getPropertiesForGID(tileGid);
-			ValueMap propValueMap = prop.asValueMap();
-			std::string canExplode = propValueMap["CanExplode"].asString();
-			if (canExplode == "false") {
-				down = i - 1;
-				break;
-			}
-		}
-	}
-	return vec;
-}
+//std::vector<int> TiledMap::calculateBombRange(int x, int y) {
+//	int left = x, right = 14 - x, up = y, down = 12 - y;
+//	std::vector<int> vec = { left, right, up, down};
+//	int tileGid;
+//	for (int i = 1; i <= left; i++) {
+//		tileGid = _collisionAndProp->getTileGIDAt(Point(x - i, y));
+//		if (tileGid > 0) {
+//			Value prop = _map->getPropertiesForGID(tileGid);
+//			ValueMap propValueMap = prop.asValueMap();
+//			std::string canExplode = propValueMap["CanExplode"].asString();
+//			if (canExplode == "false") {
+//				left = i - 1;
+//				break;
+//			}
+//		}
+//	}
+//	for (int i = 1; i <= right; i++) {
+//		tileGid = _collisionAndProp->getTileGIDAt(Point(x + i, y));
+//		if (tileGid > 0) {
+//			Value prop = _map->getPropertiesForGID(tileGid);
+//			ValueMap propValueMap = prop.asValueMap();
+//			std::string canExplode = propValueMap["CanExplode"].asString();
+//			if (canExplode == "false") {
+//				right = i - 1;
+//				break;
+//			}
+//		}
+//	}
+//	for (int i = 1; i <= up; i++) {
+//		tileGid = _collisionAndProp->getTileGIDAt(Point(x, y - i));
+//		if (tileGid > 0) {
+//			Value prop = _map->getPropertiesForGID(tileGid);
+//			ValueMap propValueMap = prop.asValueMap();
+//			std::string canExplode = propValueMap["CanExplode"].asString();
+//			if (canExplode == "false") {
+//				up = i - 1;
+//				break;
+//			}
+//		}
+//	}
+//	for (int i = 1; i <= down; i++) {
+//		tileGid = _collisionAndProp->getTileGIDAt(Point(x, y + i));
+//		if (tileGid > 0) {
+//			Value prop = _map->getPropertiesForGID(tileGid);
+//			ValueMap propValueMap = prop.asValueMap();
+//			std::string canExplode = propValueMap["CanExplode"].asString();
+//			if (canExplode == "false") {
+//				down = i - 1;
+//				break;
+//			}
+//		}
+//	}
+//	return vec;
+//}
 int TiledMap::eatTool(cocos2d::Point pos) {
 	Point tileCoord = this->tileCoordFromPosition(pos);
 	int tileGid = _collisionAndProp->getTileGIDAt(tileCoord);
@@ -221,18 +216,68 @@ int TiledMap::eatTool(cocos2d::Point pos) {
 	}
 	return 0;
 }
-std::vector<Point> TiledMap::calculateBomRangPoint(Point bombPos, int bombPower) {
-	std::vector<Point> vec(4, bombPos);
+//计算爆炸范围并初始化_bombRange
+std::vector<Point> TiledMap::calculateBomRangPoint(Point bombPos,  int bombPower) {
 	Point tileCoord = this->tileCoordFromPosition(bombPos);
-	std::vector<int> num(4, bombPower);
-	for (int i = 0; i < 4; i++) {
-		if (m_bombRange[tileCoord][i] < bombPower) {
-			num[i] = m_bombRange[tileCoord][i];
+	std::vector<int> temp(4, bombPower);
+	_bombRange = temp;
+	int tileGid;
+	//左方向
+	for (int i = 1; i <= bombPower; i++) {
+		tileGid = _collisionAndProp->getTileGIDAt(Point(tileCoord.x - i, tileCoord.y));
+		if (tileGid > 0) {
+			Value prop = _map->getPropertiesForGID(tileGid);
+			ValueMap propValueMap = prop.asValueMap();
+			std::string collision = propValueMap["Collidable"].asString();
+			if (collision == "true") {
+				_bombRange[0] = (i);
+				break;
+			}
 		}
 	}
-	vec.push_back(Vec2(bombPos.x - num[0] * 40, bombPos.y));
-	vec.push_back(Vec2(bombPos.x + num[1] * 40, bombPos.y));
-	vec.push_back(Vec2(bombPos.x, bombPos.y - num[2] * 40));
-	vec.push_back(Vec2(bombPos.x, bombPos.y + num[2] * 40));
+	//右
+	for (int i = 1; i <= bombPower; i++) {
+		tileGid = _collisionAndProp->getTileGIDAt(Point(tileCoord.x + i, tileCoord.y));
+		if (tileGid > 0) {
+			Value prop = _map->getPropertiesForGID(tileGid);
+			ValueMap propValueMap = prop.asValueMap();
+			std::string collision = propValueMap["Collidable"].asString();
+			if (collision == "true") {
+				_bombRange[1] = i;
+				break;
+			}
+		}
+	}
+	//上
+	for (int i = 1; i <= bombPower; i++) {
+		tileGid = _collisionAndProp->getTileGIDAt(Point(tileCoord.x, tileCoord.y - i));
+		if (tileGid > 0) {
+			Value prop = _map->getPropertiesForGID(tileGid);
+			ValueMap propValueMap = prop.asValueMap();
+			std::string collision = propValueMap["Collidable"].asString();
+			if (collision == "true") {
+				_bombRange[2] = i;
+				break;
+			}
+		}
+	}
+	//下
+	for (int i = 1; i <= bombPower; i++) {
+		tileGid = _collisionAndProp->getTileGIDAt(Point(tileCoord.x, tileCoord.y + i));
+		if (tileGid > 0) {
+			Value prop = _map->getPropertiesForGID(tileGid);
+			ValueMap propValueMap = prop.asValueMap();
+			std::string collision = propValueMap["Collidable"].asString();
+			if (collision == "true") {
+				_bombRange[3] = i;
+				break;
+			}
+		}
+	}
+	std::vector<Point> vec;
+	vec.push_back(Vec2(bombPos.x - _bombRange[0] * _map->getTileSize().width, bombPos.y));
+	vec.push_back(Vec2(bombPos.x + _bombRange[1] * _map->getTileSize().width, bombPos.y));
+	vec.push_back(Vec2(bombPos.x, bombPos.y + _bombRange[2] * _map->getTileSize().height));
+	vec.push_back(Vec2(bombPos.x, bombPos.y - _bombRange[3] * _map->getTileSize().height));
 	return vec;
 }

@@ -87,7 +87,8 @@ void Bomb::bombDynamic() {
 	bomb->stopAllActions();
 	auto* action = createAnimate("bombDynamic", 3,-1);
 	bomb->runAction(action);
-	scheduleOnce(schedule_selector(Bomb::bombExplode), 4.0f);
+	scheduleOnce(schedule_selector(Bomb::bombExplode), 3.5f);
+	scheduleOnce(schedule_selector(Bomb::showTool), 3.6f);
 }
 
 void Bomb::bombExplode(float dt) {
@@ -121,4 +122,8 @@ void Bomb::deleteExplode(float dt) {
 		removeChild(*it, true);
 		++it;
 	}
+}
+
+void Bomb::showTool(float dt) {
+	myGamelayer->myMap->bombTheProp(position, bombPower);
 }

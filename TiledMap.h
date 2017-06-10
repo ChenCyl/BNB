@@ -27,11 +27,8 @@ public:
 	//所在位置如果有道具，吃掉道具并且返回道具类型
 	int eatTool(cocos2d::Point pos);
 
-	//计算传入位置的爆破范围（和威力比较之后的）
+	//计算传入位置的爆破范围
 	std::vector<cocos2d::Point> calculateBomRangPoint(cocos2d::Point bombPos, int bombPower);
-
-	//计算传入位置的最大爆破范围0123左右上下
-	std::vector<int> calculateBombRange(int x, int y);
 	
 	CREATE_FUNC(TiledMap);
 public:
@@ -47,7 +44,8 @@ public:
 	float _figureOriginX;
 	float _figureOriginY;
 	//每个位置的最大爆破范围0123左右上下
-	std::map<cocos2d::Point, std::vector<int>> m_bombRange;//瓦片地图式坐标
+	//std::map<cocos2d::Point, std::vector<int>> m_bombRange;//瓦片地图式坐标
+	std::vector<int> _bombRange;//1.定范围 2.能不能炸开 3.炸的是道具还是盒子
 };
 
 #endif // __HELLOWORLD_SCENE_H__
