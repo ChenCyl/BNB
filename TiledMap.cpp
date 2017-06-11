@@ -10,21 +10,28 @@ USING_NS_CC;
 // on "init" you need to initialize your instance
 bool TiledMap::init()
 {
-    if ( !Layer::init() )
-    {
-        return false;
-    }
-	_map = TMXTiledMap::create("map11.tmx");
+	if (!Layer::init())
+	{
+		return false;
+	}
+	_num = 2;//从choselayer中传入
+	_mapVec.push_back(TMXTiledMap::create("map1.tmx"));
+	_mapVec.push_back(TMXTiledMap::create("map2.tmx"));
+	_map = _mapVec[_num - 1];
 	addChild(_map);
     
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
 	TMXObjectGroup* group = _map->getObjectGroup("object");
-	ValueMap spawnPoint = group->getObject("friend");
-
-	_figureOriginX = spawnPoint["x"].asFloat();
-	_figureOriginY = spawnPoint["y"].asFloat();
+	ValueMap spawnPoint1 = group->getObject("figure1");
+	ValueMap spawnPoint2 = group->getObject("figure2");
+	ValueMap spawnPoint3 = group->getObject("friend3");
+	ValueMap spawnPoint4 = group->getObject("friend4");
+	_figureOriginCoord.push_back(Vec2(spawnPoint1["x"].asFloat(), spawnPoint1["y"].asFloat()));
+	_figureOriginCoord.push_back(Vec2(spawnPoint2["x"].asFloat(), spawnPoint2["y"].asFloat()));
+	_figureOriginCoord.push_back(Vec2(spawnPoint3["x"].asFloat(), spawnPoint3["y"].asFloat()));
+	_figureOriginCoord.push_back(Vec2(spawnPoint4["x"].asFloat(), spawnPoint4["y"].asFloat()));
 
 	_collisionAndProp = _map->getLayer("layer2");
 	_collisionAndProp->setVisible(true);
@@ -53,10 +60,10 @@ bool TiledMap::isCollision(cocos2d::Point pos, int direction) {
 	Point tileCoord;
 	switch (direction) {
 	case LEFT:
-		tileCoord = this->tileCoordFromPosition(Vec2(pos.x - 15, pos.y));
+		tileCoord = this->tileCoordFromPosition(Vec2(pos.x - 20, pos.y));
 		break;
 	case RIGHT:
-		tileCoord = this->tileCoordFromPosition(Vec2(pos.x + 15, pos.y));
+		tileCoord = this->tileCoordFromPosition(Vec2(pos.x + 20, pos.y));
 		break;
 	case UP:
 		tileCoord = this->tileCoordFromPosition(Vec2(pos.x, pos.y + 15));
@@ -112,13 +119,13 @@ void TiledMap::bombTheProp(Point bombPos, int bombPower) {//传入炮弹的position和
 					_collisionAndProp->removeTileAt(Point(tileCoord.x + i, tileCoord.y));
 				}
 				else {
-					int gid = rand() % 6 + 21;//6个随机数从gid=21开始，有3个是道具，3个是空白，也就是道具概率为1/2
+					int gid = rand() % 8 + 21;//8个随机数从gid=21开始，有3个是道具，5个是空白
 					_collisionAndProp->setTileGID(gid, Point(tileCoord.x + i, tileCoord.y));
 				}
 			}
 		}
 	}
-	for (int i = -_bombRange[3]; i <= _bombRange[2]; i++) {
+	for (int i = -_bombRange[2]; i <= _bombRange[3]; i++) {
 		if (i == 0) {
 			continue;
 		}
@@ -133,7 +140,7 @@ void TiledMap::bombTheProp(Point bombPos, int bombPower) {//传入炮弹的position和
 					_collisionAndProp->removeTileAt(Point(tileCoord.x, tileCoord.y + i));
 				}
 				else {
-					int gid = rand() % 6 + 21;//6个随机数从gid=21开始，有3个是道具，3个是空白，也就是道具概率为1/2
+					int gid = rand() % 8 + 21;//8个随机数从gid=21开始，有3个是道具，5个是空白
 					_collisionAndProp->setTileGID(gid, Point(tileCoord.x, tileCoord.y + i));
 				}
 			}
@@ -229,8 +236,14 @@ std::vector<Point> TiledMap::calculateBomRangPoint(Point bombPos,  int bombPower
 			Value prop = _map->getPropertiesForGID(tileGid);
 			ValueMap propValueMap = prop.asValueMap();
 			std::string collision = propValueMap["Collidable"].asString();
+			std::string canExplode = propValueMap["CanExplode"].asString();
 			if (collision == "true") {
-				_bombRange[0] = (i);
+				if (canExplode == "false") {
+					_bombRange[0] = i - 1;
+				}
+				else {
+					_bombRange[0] = i;
+				}
 				break;
 			}
 		}
@@ -242,8 +255,14 @@ std::vector<Point> TiledMap::calculateBomRangPoint(Point bombPos,  int bombPower
 			Value prop = _map->getPropertiesForGID(tileGid);
 			ValueMap propValueMap = prop.asValueMap();
 			std::string collision = propValueMap["Collidable"].asString();
+			std::string canExplode = propValueMap["CanExplode"].asString();
 			if (collision == "true") {
-				_bombRange[1] = i;
+				if (canExplode == "false") {
+					_bombRange[1] = i - 1;
+				}
+				else {
+					_bombRange[1] = i;
+				}
 				break;
 			}
 		}
@@ -255,8 +274,14 @@ std::vector<Point> TiledMap::calculateBomRangPoint(Point bombPos,  int bombPower
 			Value prop = _map->getPropertiesForGID(tileGid);
 			ValueMap propValueMap = prop.asValueMap();
 			std::string collision = propValueMap["Collidable"].asString();
+			std::string canExplode = propValueMap["CanExplode"].asString();
 			if (collision == "true") {
-				_bombRange[2] = i;
+				if (canExplode == "false") {
+					_bombRange[2] = i - 1;
+				}
+				else {
+					_bombRange[2] = i;
+				}
 				break;
 			}
 		}
@@ -268,8 +293,14 @@ std::vector<Point> TiledMap::calculateBomRangPoint(Point bombPos,  int bombPower
 			Value prop = _map->getPropertiesForGID(tileGid);
 			ValueMap propValueMap = prop.asValueMap();
 			std::string collision = propValueMap["Collidable"].asString();
+			std::string canExplode = propValueMap["CanExplode"].asString();
 			if (collision == "true") {
-				_bombRange[3] = i;
+				if (canExplode == "false") {
+					_bombRange[3] = i - 1;
+				}
+				else {
+					_bombRange[3] = i;
+				}
 				break;
 			}
 		}

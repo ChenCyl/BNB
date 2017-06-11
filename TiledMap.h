@@ -32,17 +32,18 @@ public:
 	
 	CREATE_FUNC(TiledMap);
 public:
-	//测试地图
+	//地图编号
+	int _num;
+	//地图
 	cocos2d::TMXTiledMap* _map;
-	//正式地图
+	//地图集
 	std::vector<cocos2d::TMXTiledMap*> _mapVec;
 	//障碍和道具层
 	cocos2d::TMXLayer* _collisionAndProp;
 	//地面层
 	cocos2d::TMXLayer* _land;
 	//对象层的坐标
-	float _figureOriginX;
-	float _figureOriginY;
+	std::vector<cocos2d::Point> _figureOriginCoord;
 	//每个位置的最大爆破范围0123左右上下
 	//std::map<cocos2d::Point, std::vector<int>> m_bombRange;//瓦片地图式坐标
 	std::vector<int> _bombRange;//1.定范围 2.能不能炸开 3.炸的是道具还是盒子

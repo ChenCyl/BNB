@@ -40,9 +40,9 @@ bool AppDelegate::applicationDidFinishLaunching() {
 	auto glview = director->getOpenGLView();
 	if (!glview) {
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
-		glview = GLViewImpl::create("Myproject");
+		glview = GLViewImpl::create("MyGame");
 #else
-		glview = GLViewImpl::create("Myproject");
+		glview = GLViewImpl::create("MyGame");
 #endif
 		glview->setFrameSize(900, 600);
 		director->setOpenGLView(glview);

@@ -12,18 +12,16 @@ bool clientLayer::init()
 	sprite->setPosition(Vec2(winSize.width *0.5, winSize.height*0.5));
 	this->addChild(sprite, 0);
 
-	MenuItemLabel *menuItem = MenuItemLabel::create(Label::createWithSystemFont("Single", "", 30), CC_CALLBACK_1(clientLayer::menucallback, this));
-	menuItem->setColor(Color3B(0, 0, 0));
+	auto *menuItem = MenuItemImage::create("single1.png", "single2.png", CC_CALLBACK_1(clientLayer::menucallback, this));
+	//delete set color
 	menuItem->setTag(101);
 	menuItem->setPosition(Vec2(winSize.width *0.8, winSize.height*0.3));
 
-	MenuItemLabel *menuItem_2 = MenuItemLabel::create(Label::createWithSystemFont("Double", "", 30), CC_CALLBACK_1(clientLayer::menucallback, this));
-	menuItem_2->setColor(Color3B(0, 0, 0));
+	auto *menuItem_2 = MenuItemImage::create("double1.png", "double2.png", CC_CALLBACK_1(clientLayer::menucallback, this));
 	menuItem_2->setTag(102);
 	menuItem_2->setPosition(Vec2(winSize.width *0.8, winSize.height*0.2));
 
-	MenuItemLabel *menuItem_3 = MenuItemLabel::create(Label::createWithSystemFont("Return", "", 30), CC_CALLBACK_1(clientLayer::menucallback, this));
-	menuItem_3->setColor(Color3B(0, 0, 0));
+	auto *menuItem_3 = MenuItemImage::create("return1.png", "return2.png", CC_CALLBACK_1(clientLayer::menucallback, this));
 	menuItem_3->setTag(103);
 	menuItem_3->setPosition(Vec2(winSize.width *0.8, winSize.height*0.1));
 

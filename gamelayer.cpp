@@ -16,17 +16,17 @@ bool gamelayer::init()
 	Size winSize = Director::getInstance()->getWinSize();
 
 
-	MenuItemLabel *menuItem = MenuItemLabel::create(Label::createWithSystemFont("finish ", "", 30), CC_CALLBACK_1(gamelayer::menucallback, this));
+	MenuItemLabel *menuItem = MenuItemLabel::create(Label::createWithSystemFont("FINISH", "arial.ttf", 20), CC_CALLBACK_1(gamelayer::menucallback, this));
 	menuItem->setTag(101);
-	menuItem->setPosition(Vec2(winSize.width *0.8, winSize.height*0.3));
+	menuItem->setPosition(Vec2(760, 75));
 
-	MenuItemLabel *menuItem_2 = MenuItemLabel::create(Label::createWithSystemFont("Again", "", 30), CC_CALLBACK_1(gamelayer::menucallback, this));
+	MenuItemLabel *menuItem_2 = MenuItemLabel::create(Label::createWithSystemFont("PLAY AGAIN", "arial.ttf", 20), CC_CALLBACK_1(gamelayer::menucallback, this));
 	menuItem_2->setTag(102);
-	menuItem_2->setPosition(Vec2(winSize.width *0.8, winSize.height*0.15));
+	menuItem_2->setPosition(Vec2(760, 30));
 
 	auto menu = Menu::create(menuItem, menuItem_2, NULL);
 	menu->setPosition(Point::ZERO);
-	this->addChild(menu);
+	this->addChild(menu, 1);
 
 	Sprite* gameFrame = Sprite::create("BG.png");
 	gameFrame->setAnchorPoint(ccp(0, 0));
@@ -36,7 +36,6 @@ bool gamelayer::init()
 };
 
 void gamelayer::gamelayerInit() {
-
 	loadMap();
 	loadFigure();
 	loadBar();
@@ -78,7 +77,7 @@ void gamelayer::loadFigure() {
 	Point mapSize = Vec2(winSize.width *0.34, winSize.height*0.5);
 	int figureNum = 0;
 	for (int i = 0;i < playerOne;i++) {
-		Player_one* player1 = Player_one::createFigureSprite(Vec2(myMap->_figureOriginX, myMap->_figureOriginY), DOWN, USER, figureTeam[figureNum+i], 0);
+		Player_one* player1 = Player_one::createFigureSprite(myMap->_figureOriginCoord[0], DOWN, USER, figureTeam[figureNum+i], 0);
 		player1->myGamelayer = this;
 		players.push_back(player1);
 		myMap->_map->addChild(player1, 2);
@@ -86,8 +85,7 @@ void gamelayer::loadFigure() {
 	}
 
 	for (int i = 0;i < playerSe;i++) {
-		Player_se* player2 = Player_se::createFigureSprite(Vec2(mapSize.x / 2 - 25,
-			mapSize.y / 2 + 50), DOWN, USER, figureTeam[figureNum+i], 1);
+		Player_se* player2 = Player_se::createFigureSprite(myMap->_figureOriginCoord[1], DOWN, USER, figureTeam[figureNum+i], 1);
 		player2->myGamelayer = this;
 		players.push_back(player2);
 		myMap->_map->addChild(player2, 2);

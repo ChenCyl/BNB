@@ -1,4 +1,5 @@
 #include "Bomb.h"
+#include "TiledMap.h"
 
 USING_NS_CC;
 
@@ -24,6 +25,7 @@ Bomb* Bomb::createBombSprite(Point myposition) {
 		myBomb->autorelease();
 		myBomb->bomb = Sprite::create("bomb1.png");
 		myBomb->bomb->setPosition(myposition);
+		myBomb->bomb->setAnchorPoint(ccp(0.5, 0.4));
 		myBomb->addChild(myBomb->bomb);
 		myBomb->position = myposition;
 		return myBomb;

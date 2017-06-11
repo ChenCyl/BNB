@@ -27,7 +27,7 @@ void Figure::figureInit(Point myPosition, int myDirection, int myType, int myTea
 	type = myType;
 	team = myTeam;
 	tag = mytag;
-	speed = 9.0;
+	speed = 10.0;
 	bombNum = 1;
 	bombNum_avail = 1;
 	bombPower = 1;
@@ -65,19 +65,19 @@ void Figure::Move(int myDirection, bool i) {
 		if (i) {
 			switch (direction) {
 			case LEFT:
-				target = Vec2(position.x - 5, position.y);
+				target = Vec2(position.x - speed, position.y);
 				break;
 			case RIGHT:
-				target = Vec2(position.x + 5, position.y);
+				target = Vec2(position.x + speed, position.y);
 				break;
 			case UP:
-				target = Vec2(position.x, position.y + 5);
+				target = Vec2(position.x, position.y + speed);
 				break;
 			case DOWN:
-				target = Vec2(position.x, position.y - 5);
+				target = Vec2(position.x, position.y - speed);
 				break;
 			}
-			auto* moveto = MoveTo::create(1.0 / speed, target);
+			auto* moveto = MoveTo::create(1.0 / 5, target);
 			auto* spawn = Spawn::create(moveto, walk, NULL);
 			sprite->runAction(spawn);
 			position = target;
@@ -98,7 +98,7 @@ void Figure::CollectTool(unsigned int tool_type) {
 	switch (tool_type)
 	{
 	case TOOL_SHOE:
-		speed += 0.5;
+		speed += 2.5;
 		break;
 	case TOOL_BOMB:
 	{	
