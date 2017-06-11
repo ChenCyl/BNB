@@ -27,7 +27,7 @@ void Figure::figureInit(Point myPosition, int myDirection, int myType, int myTea
 	type = myType;
 	team = myTeam;
 	tag = mytag;
-	speed = 9.0;
+	speed = 10.0;
 	bombNum = 1;
 	bombNum_avail = 1;
 	bombPower = 1;
@@ -37,8 +37,10 @@ void Figure::figureInit(Point myPosition, int myDirection, int myType, int myTea
 	m_frameCache->addSpriteFramesWithFile("figure.plist", "figure.png");
 	sprite = Sprite::createWithSpriteFrameName(String::createWithFormat("stand%d%d1.png", team, direction)->getCString());
 	sprite->setPosition(position);
-	sprite->setAnchorPoint(ccp(0.5, 0.3));
+	sprite->setAnchorPoint(ccp(0.4, 0.3));
 	addChild(sprite,1);
+
+	labelInit(mytag);
 }
 
 Animate* Figure::createAnimate(int direction, int team, const char*action, int num,int time) {
@@ -65,19 +67,19 @@ void Figure::Move(int myDirection, bool i) {
 		if (i) {
 			switch (direction) {
 			case LEFT:
-				target = Vec2(position.x - 5, position.y);
+				target = Vec2(position.x - speed, position.y);
 				break;
 			case RIGHT:
-				target = Vec2(position.x + 5, position.y);
+				target = Vec2(position.x + speed, position.y);
 				break;
 			case UP:
-				target = Vec2(position.x, position.y + 5);
+				target = Vec2(position.x, position.y + speed);
 				break;
 			case DOWN:
-				target = Vec2(position.x, position.y - 5);
+				target = Vec2(position.x, position.y - speed);
 				break;
 			}
-			auto* moveto = MoveTo::create(1.0 / speed, target);
+			auto* moveto = MoveTo::create(1.0 / 6, target);
 			auto* spawn = Spawn::create(moveto, walk, NULL);
 			sprite->runAction(spawn);
 			position = target;
@@ -98,17 +100,22 @@ void Figure::CollectTool(unsigned int tool_type) {
 	switch (tool_type)
 	{
 	case TOOL_SHOE:
-		speed += 3.0;
+	{
+		speed < 17 ? speed += 2.5 : speed+=0;
 		break;
+	}
 	case TOOL_BOMB:
 	{	
-		++bombNum;
-		++bombNum_avail;
+		if (bombNum <= 10) {
+			++bombNum;
+			++bombNum_avail;
+			updateLabel();
+		}
 		break;
 	}
 	case TOOL_LIQUID:
 	{
-		if (bombPower <= 6){++bombPower;}
+		bombPower <= 6?++bombPower:bombPower+=0;
 		break;
 	}
 	default:
@@ -164,6 +171,23 @@ void Figure::Delete() {
 	removeChild(sprite, true);
 }
 
-void Figure::recoverBomb(float dt) {
-	++bombNum_avail;
+void Figure::labelInit(int tag) {
+
+	labelBombNum = LabelTTF::create("bomb 1", "Arial", 15);
+	labelBombNum->setAnchorPoint(Vec2(0.5, 0.5));
+	labelBombNum->setFontFillColor(Color3B(240, 248, 255));
+	labelBombNum->setPosition(Vec2(730, 85 + tag * 105));
+	addChild(labelBombNum, 4);
+	labelBombNum_avail = LabelTTF::create("bombAvail 1", "Arial", 15);
+	labelBombNum_avail->setAnchorPoint(Vec2(0.5, 0.5));
+	labelBombNum_avail->setFontFillColor(Color3B(240, 248, 255));
+	labelBombNum_avail->setPosition(Vec2(730, 100 + tag * 105));
+	addChild(labelBombNum_avail, 4);
+}
+
+void Figure::updateLabel() {
+	auto* bombNumStr = String::createWithFormat("bomb %d", bombNum)->getCString();
+	labelBombNum->setString(bombNumStr);
+	bombNumStr = String::createWithFormat("bombAvail %d", bombNum_avail)->getCString();
+	labelBombNum_avail->setString(bombNumStr);
 }

@@ -31,10 +31,13 @@ public:
 	std::vector<Point> bombRange;
 	gamelayer* myGamelayer;
 	int bombPower;
+	int playerTag;
+	int bombTag;
+	bool exit=true;
 
 	virtual bool init();
 	CREATE_FUNC(Bomb);
-	static Bomb* createBombSprite(Point position);
+	static Bomb* createBombSprite(Point& position,int& playerTag,int& bombPower,int& bombTag,gamelayer* gameLayer);
 	Animate* createAnimate(const char *action, int num,int time);
 	void bombDynamic();
 	void bombExplode(float dt);

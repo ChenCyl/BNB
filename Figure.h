@@ -26,6 +26,7 @@ class gamelayer;
 #define TOOL_BOMB 2
 #define TOOL_LIQUID 3 
 
+
 USING_NS_CC;
 //人物
 class Figure:public Layer
@@ -49,6 +50,8 @@ public:
 	int bombNum_avail;//剩余炸弹个数
 	int bombPower;//炸弹威力
 	gamelayer* myGamelayer;//所在的游戏层
+	LabelTTF* labelBombNum;
+	LabelTTF* labelBombNum_avail;
 	
 	static Figure* createFigureSprite(Point position, int direction,int type, int team,int tag);//创建人物
 	void figureInit(Point position, int direction, int type, int team,int tag);//初始化人物
@@ -62,7 +65,9 @@ public:
 	void Die(float dt);
 	void Win();
 	void Delete();
-	void recoverBomb(float dt);
+	/*void recoverBomb(float dt);*/
+	void labelInit(int tag);
+	void updateLabel();
 
 	virtual bool init();
 	CREATE_FUNC(Figure);

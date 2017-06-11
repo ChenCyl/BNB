@@ -15,19 +15,19 @@ USING_NS_CC;
 bool gamelayer::init()
 {
 	Size winSize = Director::getInstance()->getWinSize();
+	allBombNum = 0;
 
-
-	MenuItemLabel *menuItem = MenuItemLabel::create(Label::createWithSystemFont("finish ", "", 30), CC_CALLBACK_1(gamelayer::menucallback, this));
+	MenuItemLabel *menuItem = MenuItemLabel::create(Label::createWithSystemFont("FINISH ", "arial.ttf", 20), CC_CALLBACK_1(gamelayer::menucallback, this));
 	menuItem->setTag(101);
-	menuItem->setPosition(Vec2(winSize.width *0.8, winSize.height*0.3));
+	menuItem->setPosition(Vec2(760, 75));
 
-	MenuItemLabel *menuItem_2 = MenuItemLabel::create(Label::createWithSystemFont("Again", "", 30), CC_CALLBACK_1(gamelayer::menucallback, this));
+	MenuItemLabel *menuItem_2 = MenuItemLabel::create(Label::createWithSystemFont("PLAY AGAIN", "arial.ttf", 20), CC_CALLBACK_1(gamelayer::menucallback, this));
 	menuItem_2->setTag(102);
-	menuItem_2->setPosition(Vec2(winSize.width *0.8, winSize.height*0.15));
+	menuItem_2->setPosition(Vec2(760, 25));
 
 	auto menu = Menu::create(menuItem, menuItem_2, NULL);
 	menu->setPosition(Point::ZERO);
-	this->addChild(menu);
+	this->addChild(menu, 1);
 
 	Sprite* gameFrame = Sprite::create("BG.png");
 	gameFrame->setAnchorPoint(ccp(0, 0));
@@ -69,7 +69,7 @@ void gamelayer::menucallback(Ref *psender)
 
 void gamelayer::loadMap() {
 	myMap = TiledMap::createTiledMap();
-	myMap->_map->setPosition(20, 40);
+	myMap->_map->setPosition(-20, 0);
 	myMap->_map->setAnchorPoint(ccp(0, 0));
 	addChild(myMap, 1);
 }
@@ -79,19 +79,18 @@ void gamelayer::loadFigure() {
 	Point mapSize = Vec2(winSize.width *0.34, winSize.height*0.5);
 	int figureNum = 0;
 	for (int i = 0;i < playerOne;i++) {
-		Player_one* player1 = Player_one::createFigureSprite(Vec2(myMap->_figureOriginX, myMap->_figureOriginY-30), DOWN, USER, figureTeam[i], i);
+		Player_one* player1 = Player_one::createFigureSprite(myMap->_figureOriginCoord[0], DOWN, USER, figureTeam[i], i);
 		player1->myGamelayer = this;
 		players.push_back(player1);
-		addChild(player1, 3);
+		myMap->_map->addChild(player1,1);
 		figureNum++;
 	}
 
 	for (int i = 0;i < playerSe;i++) {
-		Player_se* player2 = Player_se::createFigureSprite(Vec2(mapSize.x / 2 - 25,
-			mapSize.y / 2 + 50), DOWN, USER, figureTeam[figureNum], figureNum);
+		Player_se* player2 = Player_se::createFigureSprite(myMap->_figureOriginCoord[1], DOWN, USER, figureTeam[figureNum], figureNum);
 		player2->myGamelayer = this;
 		players.push_back(player2);
-		addChild(player2, 3);
+		myMap->_map->addChild(player2, 1);
 		figureNum++;
 	}
 
@@ -100,10 +99,10 @@ void gamelayer::loadFigure() {
 		teamInitForAi(figureNum);
 
 		for (int i = 0;i < 4 - playerSe - playerOne;i++) {
-			Player_ai* player_ai = Player_ai::createFigureSprite(Vec2(myMap->_figureOriginX+35, myMap->_figureOriginY + 40*(i+1)), DOWN, COMPUTER, figureTeam[figureNum], figureNum);
+			Player_ai* player_ai = Player_ai::createFigureSprite(myMap->_figureOriginCoord[4], DOWN, COMPUTER, figureTeam[figureNum], figureNum);
 			player_ai->myGamelayer = this;
 			players.push_back(player_ai);
-			addChild(player_ai, 3);
+			myMap->_map->addChild(player_ai, 1);
 			figureNum++;
 		}
 	}
@@ -147,7 +146,7 @@ void gamelayer::loadBar() {
 }
 
 void gamelayer::figureMove(int tag, int direction) {
-	bool canMove = !myMap->isCollision(players[tag]->position,direction);//判断该人物朝该方向走是否会遇到障碍物
+	bool canMove = (!(myMap->isCollision(players[tag]->position,direction)))&&(!moveifBomb(tag,direction));//判断该人物朝该方向走是否会遇到障碍物
 	players[tag]->Move(direction, (canMove&&moveifPlayer(tag)));//执行人物走动
 	getTool(tag, players[tag]->position);//判断走到的位置是否有道具，有的话就捡起来
 }
@@ -156,14 +155,18 @@ void gamelayer::putBomb(int playerTag, Point position) {
 	Point mP = players[playerTag]->position;//将现在坐标转换为所在瓦片的中心坐标
 	mP = myMap->tileCoordFromPosition(mP);
 	mP = myMap->PositionFromTileCoord(mP);
-	int bombPower = players[playerTag]->bombPower;
-	auto myBomb = Bomb::createBombSprite(mP);//创建并放炸弹
-	myBomb->myGamelayer = this;
-	myBomb->bombPower = bombPower;
-	addChild(myBomb, 1);
-	myBomb->bombDynamic();
-	std::vector<Point> bombRange = myMap->calculateBomRangPoint(mP, bombPower);//计算炸弹所炸最远范围
-	myBomb->initExplode(bombRange);//炸弹爆炸
+	if(canBomb(mP)){
+		int bombPower = players[playerTag]->bombPower;
+		auto myBomb = Bomb::createBombSprite(mP, playerTag, bombPower, allBombNum, this);//创建并放炸弹
+		++allBombNum;
+		allBombs.push_back(myBomb);
+		myMap->_map->addChild(myBomb, 0);
+		myBomb->bombDynamic();
+		std::vector<Point> bombRange = myMap->calculateBomRangPoint(mP, bombPower);//计算炸弹所炸最远范围
+		myBomb->initExplode(bombRange);//炸弹爆炸
+	}
+	
+
 }
 
 bool gamelayer::moveifPlayer(int doerTag) {
@@ -174,7 +177,7 @@ bool gamelayer::moveifPlayer(int doerTag) {
 		{
 			Point figP = figures->position;
 			Point doP = players[doerTag]->position;
-			if (fabsf(figP.x - doP.x) <= 5 && fabsf(figP.y - doP.y) <= 5) //碰撞
+			if (fabsf(figP.x - doP.x) <= 10 && fabsf(figP.y - doP.y) <= 10) //碰撞
 			{
 				if (figures->team != players[doerTag]->team) //是敌队
 				{
@@ -265,7 +268,7 @@ void gamelayer::myUpdate(float dt) {
 	}
 
 	//时间到了,游戏结束
-	if (timeLeft <= 0) {
+	if (timeLeft <= 0.19f) {
 		unschedule(schedule_selector(gamelayer::myUpdate));
 		if (isClient) {
 			//客户端版：时间结束时，玩家没死算赢
@@ -448,4 +451,98 @@ void gamelayer::finishGame(float dt) {
 	unscheduleAllSelectors();
 	tsm->gofinishscene();
 
+}
+
+bool gamelayer::moveifBomb(int tag, int direction) {
+
+	for (auto* bomb : allBombs) {
+		if (bomb->exit) {
+			switch (direction) {
+			case LEFT:
+			{
+				if (fabsf(players[tag]->position.x - 25 - bomb->position.x) < 8 && fabsf(players[tag]->position.y - bomb->position.y) < 15)
+				{
+					return true;
+				}
+				break;
+			}
+			case RIGHT:
+			{
+				if (fabsf(players[tag]->position.x + 25 - bomb->position.x) < 8 && fabsf(players[tag]->position.y - bomb->position.y) < 15)
+				{
+					return true;
+				}
+				break;
+			}
+			case UP:
+			{
+				if (fabsf(players[tag]->position.y + 25 - bomb->position.y) < 12 && fabsf(players[tag]->position.x - bomb->position.x) < 15)
+				{
+					return true;
+				}
+				break;
+			}
+			case DOWN:
+			{
+				if (fabsf(players[tag]->position.y - 25 - bomb->position.y) < 12 && fabsf(players[tag]->position.x - bomb->position.x) < 15)
+				{
+					return true;
+				}
+				break;
+			}
+			default:
+				break;
+			}
+		}
+		
+	}
+	return false;
+}
+
+int gamelayer::bombifBomb(std::vector<Point>&vec,int& theBombTag) {
+	for (auto* bomb : allBombs) {
+		if (bomb->exit) {
+			if (((bomb->position.x<vec[1].x + 5) && (bomb->position.x>vec[0].x - 5) && (fabsf(bomb->position.y - vec[0].y) < 5)) || ((bomb->position.y<vec[2].y + 5) && (bomb->position.y>vec[3].y - 5) && (fabsf(bomb->position.x - vec[2].x) < 5)))
+			{
+				if (bomb->bombTag > theBombTag) {
+					return BombOther;
+				}
+				else {
+					return WaitBomb;
+				}
+			}
+			else {
+				return BombJust;
+			}
+		}
+	}
+	return BombJust;
+}
+
+void gamelayer::bombBomb(std::vector<Point>&vec, int& theBombTag) {
+	for (auto* bomb : allBombs) {
+		if (bomb->exit==true) {
+			if (bomb->bombTag > theBombTag) {
+				if (bomb->position.x<vec[1].x + 5 && bomb->position.x>vec[0].x - 5 && fabsf(bomb->position.y - vec[0].y) < 5)
+				{
+					bomb->bombExplode(0.0);
+				}
+				if (bomb->position.y<vec[2].y + 5 && bomb->position.y>vec[3].y - 5 && fabsf(bomb->position.x - vec[2].x) < 5)
+				{
+					bomb->bombExplode(0.0);
+				}
+			}
+		}
+	}
+}
+
+bool gamelayer::canBomb(Point mP) {
+	for (auto* bomb : allBombs) {
+		if (bomb->exit) {
+			if (bomb->position == mP) {
+				return false;
+			}
+		}
+	}
+	return true;
 }

@@ -1,5 +1,7 @@
 #include "Bomb.h"
-
+#include <algorithm>
+#include <numeric>
+#include <functional>
 USING_NS_CC;
 
 Bomb::Bomb()
@@ -18,12 +20,17 @@ bool Bomb::init() {
 	return true;
 }
 
-Bomb* Bomb::createBombSprite(Point myposition) {
+Bomb* Bomb::createBombSprite(Point& myposition,int& playerTag,int& bombPower,int& bombTag, gamelayer* gameLayer) {
 	Bomb* myBomb = new Bomb();
 	if (myBomb&&myBomb->init()) {
 		myBomb->autorelease();
+		myBomb->playerTag = playerTag;
+		myBomb->bombPower = bombPower;
+		myBomb->myGamelayer = gameLayer;
+		myBomb->bombTag = bombTag;
 		myBomb->bomb = Sprite::create("bomb1.png");
 		myBomb->bomb->setPosition(myposition);
+		myBomb->bomb->setAnchorPoint(ccp(0.5, 0.4));
 		myBomb->addChild(myBomb->bomb);
 		myBomb->position = myposition;
 		return myBomb;
@@ -31,6 +38,7 @@ Bomb* Bomb::createBombSprite(Point myposition) {
 	CC_SAFE_DELETE(myBomb);
 	return NULL;
 }
+
 void Bomb::addChildExplosion(float beg, float end, float remain,int tag) {
 	auto* m_frameCache = SpriteFrameCache::getInstance();
 	m_frameCache->addSpriteFramesWithFile("bomb.plist", "bomb.png");
@@ -71,6 +79,7 @@ void Bomb::initExplode(std::vector<Point>&vec) {
 }
 
 void Bomb::explode(float dt) {
+
 	addChildExplosion(bombRange[0].x+40, position.x, position.y, explode_line_left);
 	addChildExplosion(position.x+40, bombRange[1].x, position.y, explode_line_right);
 	addChildExplosion(position.y + 40, bombRange[2].y, position.x, explode_row_up);
@@ -81,6 +90,7 @@ void Bomb::explode(float dt) {
 	addExplosionAnimate(bombRange[3], explode_end_down);
 	myGamelayer->bombifPlayer(bombRange);
 	scheduleOnce(schedule_selector(Bomb::deleteExplode), 0.5f);
+	
 }
 
 void Bomb::bombDynamic() {
@@ -88,16 +98,54 @@ void Bomb::bombDynamic() {
 	auto* action = createAnimate("bombDynamic", 3,-1);
 	bomb->runAction(action);
 	scheduleOnce(schedule_selector(Bomb::bombExplode), 3.5f);
-	scheduleOnce(schedule_selector(Bomb::showTool), 3.6f);
 }
 
 void Bomb::bombExplode(float dt) {
-	bomb->stopAllActions();
-	auto* action = createAnimate("bombExplode", 4,1);
-	auto* callFunc = CallFunc::create(CC_CALLBACK_0(Bomb::deleteBomb, this));
-	auto* sequence = Sequence::create(action, callFunc, NULL);
-	bomb->runAction(sequence);
-	scheduleOnce(schedule_selector(Bomb::explode), 0.1f);
+
+	int Tag = bombTag;
+	auto p = std::find_if(myGamelayer->allBombs.begin(), myGamelayer->allBombs.end(), [Tag](const Bomb* a) {return a->bombTag == Tag;});
+	if ((*p)->exit==true)
+	{
+		(*p)->exit = false;
+	}
+	else {
+		return;
+	}
+	int type = myGamelayer->bombifBomb(bombRange, bombTag);
+
+	switch (type)
+	{
+	case BombOther:
+	{
+		myGamelayer->bombBomb(bombRange, bombTag);
+		bomb->stopAllActions();
+		auto* action = createAnimate("bombExplode", 4, 1);
+		auto* callFunc = CallFunc::create(CC_CALLBACK_0(Bomb::deleteBomb, this));
+		auto* sequence = Sequence::create(action, callFunc, NULL);
+		bomb->runAction(sequence);
+		scheduleOnce(schedule_selector(Bomb::showTool), 0.1f);
+		scheduleOnce(schedule_selector(Bomb::explode), 0.1f);
+		break;
+	}
+	case BombJust:
+	{
+		bomb->stopAllActions();
+		auto* action = createAnimate("bombExplode", 4, 1);
+		auto* callfunc = CallFunc::create(CC_CALLBACK_0(Bomb::deleteBomb, this));
+		auto* sequence = Sequence::create(action, callfunc, NULL);
+		bomb->runAction(sequence);
+		scheduleOnce(schedule_selector(Bomb::showTool), 0.1f);
+		scheduleOnce(schedule_selector(Bomb::explode), 0.1f);
+		break;
+	}
+	case WaitBomb:
+		break;
+	default:
+		break;
+	}
+	
+	++(myGamelayer->players[playerTag]->bombNum_avail);
+	myGamelayer->players[playerTag]->updateLabel();
 }
 
 Animate* Bomb::createAnimate(const char *action, int num,int time) {
@@ -113,9 +161,11 @@ Animate* Bomb::createAnimate(const char *action, int num,int time) {
 	animation->setDelayPerUnit(0.2f);
 	return Animate::create(animation);
 }
+
 void Bomb::deleteBomb() {
 	removeChild(bomb,true);
 }
+
 void Bomb::deleteExplode(float dt) {
 	auto it = explosionSprite.begin();
 	while (it != explosionSprite.end()) {

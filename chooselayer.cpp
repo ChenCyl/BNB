@@ -15,13 +15,13 @@ void chooselayer::chooselayerInit() {
 	this->addChild(sprite, 0);
 
 
-	MenuItemLabel *menuItem = MenuItemLabel::create(Label::createWithSystemFont("Start", "", 30), CC_CALLBACK_1(chooselayer::menucallback, this));
+	auto *menuItem = MenuItemImage::create("start1.png", "start2.png", CC_CALLBACK_1(chooselayer::menucallback, this));
 	menuItem->setTag(101);
 	menuItem->setPosition(Vec2(winSize.width *0.8, winSize.height*0.3));
 
-	MenuItemLabel *menuItem_2 = MenuItemLabel::create(Label::createWithSystemFont("Return", "", 30), CC_CALLBACK_1(chooselayer::menucallback, this));
+	auto *menuItem_2 = MenuItemImage::create("return1.png", "return2.png", CC_CALLBACK_1(chooselayer::menucallback, this));
 	menuItem_2->setTag(102);
-	menuItem_2->setPosition(Vec2(winSize.width *0.8, winSize.height*0.15));
+	menuItem_2->setPosition(Vec2(winSize.width *0.8, winSize.height*0.2));
 
 
 	auto menu = Menu::create(menuItem, menuItem_2, NULL);
