@@ -76,6 +76,18 @@ bool AppDelegate::applicationDidFinishLaunching() {
 	register_all_packages();
 
 	// create a scene. it's an autorelease object
+	
+		for (int i = 1;i < 3;++i) {
+			CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadBackgroundMusic(String::createWithFormat("bg%d.mp3", i)->getCString());
+		}
+	
+		for (int i = 1;i < 10;++i) {
+			CocosDenshion::SimpleAudioEngine::sharedEngine()->preloadEffect(String::createWithFormat("effect%d.wav", i)->getCString());
+		}
+	
+
+
+
 
 	SceneManager * manager = new SceneManager();
 	manager->createloadscene();

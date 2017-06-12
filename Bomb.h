@@ -8,6 +8,8 @@
 #include <algorithm>
 #include <numeric>
 #include "gamelayer.h"
+#include "SimpleAudioEngine.h"
+using namespace CocosDenshion;
 class gamelayer;
 USING_NS_CC;
 

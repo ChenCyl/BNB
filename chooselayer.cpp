@@ -1,4 +1,6 @@
 #include "chooselayer.h"
+#include "SimpleAudioEngine.h"
+using namespace CocosDenshion;
 bool chooselayer::init()
 {
 	
@@ -41,6 +43,8 @@ void chooselayer::chooselayerInit() {
 	if (chooseNum == 2) {
 		showFigureChoose(300);
 	}
+
+	addSwitch();
 }
 void chooselayer::menucallback(Ref *psender)
 {
@@ -70,6 +74,7 @@ void chooselayer::menucallback(Ref *psender)
 }
 void chooselayer::figurecallback(Ref *psender)
 {
+	SimpleAudioEngine::getInstance()->playEffect("effect1.wav");
 	switch (((MenuItemImage *)psender)->getTag())
 	{
 	case 101:
@@ -184,4 +189,27 @@ void chooselayer::showFigureChoose(float y) {
 	figuremenu->setPosition(Vec2::ZERO);
 	this->addChild(figuremenu);
 
+}
+
+void chooselayer::onEnter() {
+	SimpleAudioEngine::getInstance()->stopBackgroundMusic();
+	Layer::onEnter();
+}
+
+void chooselayer::onEnterTransitionDidFinish() {
+	Layer::onEnterTransitionDidFinish();
+	SimpleAudioEngine::getInstance()->playBackgroundMusic("bg3.mp3", true);
+}
+
+void chooselayer::onExit() {
+	Layer::onExit();
+}
+
+void chooselayer::onExitTransitionDidStart() {
+	Layer::onExitTransitionDidStart();
+}
+
+void chooselayer::cleanup() {
+	Layer::cleanup();
+	
 }

@@ -97,6 +97,8 @@ void Figure::DoStand() {
 }
 
 void Figure::CollectTool(unsigned int tool_type) {
+	score += 5;
+	updateLabel();
 	switch (tool_type)
 	{
 	case TOOL_SHOE:
@@ -158,6 +160,7 @@ void Figure::Win() {
 	sprite->stopAllActions();
 	auto* win = createAnimate(NO_DIRECTION, team, "win", 2,-1); 
 	sprite->runAction(win);
+	SimpleAudioEngine::getInstance()->playEffect("effect9.wav");
 }
 
 bool Figure::init() {
@@ -173,21 +176,35 @@ void Figure::Delete() {
 
 void Figure::labelInit(int tag) {
 
-	labelBombNum = LabelTTF::create("bomb 1", "Arial", 15);
-	labelBombNum->setAnchorPoint(Vec2(0.5, 0.5));
-	labelBombNum->setFontFillColor(Color3B(240, 248, 255));
-	labelBombNum->setPosition(Vec2(730, 85 + tag * 105));
-	addChild(labelBombNum, 4);
-	labelBombNum_avail = LabelTTF::create("bombAvail 1", "Arial", 15);
+	labelScore = LabelTTF::create("Score 0", "Arial", 15);
+	labelScore->setAnchorPoint(Vec2(0.5, 0.5));
+	labelScore->setFontFillColor(Color3B(240, 248, 255));
+	labelScore->setPosition(Vec2(790, 490 - tag * 110));
+	addChild(labelScore, 4);
+	labelBombNum_avail = LabelTTF::create("Bomb 1", "Arial", 15);
 	labelBombNum_avail->setAnchorPoint(Vec2(0.5, 0.5));
 	labelBombNum_avail->setFontFillColor(Color3B(240, 248, 255));
-	labelBombNum_avail->setPosition(Vec2(730, 100 + tag * 105));
+	labelBombNum_avail->setPosition(Vec2(790, 470 - tag * 110));
 	addChild(labelBombNum_avail, 4);
+	labelKill = LabelTTF::create("Kill 0", "Arial", 15);
+	labelKill->setAnchorPoint(Vec2(0.5, 0.5));
+	labelKill->setFontFillColor(Color3B(240, 248, 255));
+	labelKill->setPosition(Vec2(850, 490 - tag * 110));
+	addChild(labelKill, 4);
+	labelSave = LabelTTF::create("Save 0", "Arial", 15);
+	labelSave->setAnchorPoint(Vec2(0.5, 0.5));
+	labelSave->setFontFillColor(Color3B(240, 248, 255));
+	labelSave->setPosition(Vec2(850, 470 - tag * 110));
+	addChild(labelSave, 4);
 }
 
 void Figure::updateLabel() {
-	auto* bombNumStr = String::createWithFormat("bomb %d", bombNum)->getCString();
-	labelBombNum->setString(bombNumStr);
-	bombNumStr = String::createWithFormat("bombAvail %d", bombNum_avail)->getCString();
+	auto* bombNumStr = String::createWithFormat("Bomb %d", bombNum_avail)->getCString();
 	labelBombNum_avail->setString(bombNumStr);
+	bombNumStr = String::createWithFormat("Kill %d", killNum)->getCString();
+	labelKill->setString(bombNumStr);
+	bombNumStr = String::createWithFormat("Save %d", saveNum)->getCString();
+	labelSave->setString(bombNumStr);
+	bombNumStr = String::createWithFormat("Score %d", score)->getCString();
+	labelScore->setString(bombNumStr);
 }

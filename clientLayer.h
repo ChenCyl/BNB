@@ -4,8 +4,9 @@
 #include <iostream>
 #include "cocos2d.h"
 #include "SceneManager.h"
+#include "mainLayer.h"
 USING_NS_CC;
-class clientLayer:public Layer
+class clientLayer:public mainLayer
 {
 public:
 	CREATE_FUNC(clientLayer);

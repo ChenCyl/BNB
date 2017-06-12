@@ -1,12 +1,14 @@
 #pragma once
 #include <iostream>
 #include "cocos2d.h"
+#include "cocos-ext.h"
 #include "SceneManager.h"
 #include "Figure.h"
 #include "Bomb.h"
 #include "TiledMap.h"
 #include "countDownBar.h"
-
+//#include "mainLayer.h"
+USING_NS_CC_EXT;
 USING_NS_CC;
 #define RED 1
 #define GREEN 2
@@ -27,6 +29,7 @@ class Figure;
 class countDownBar;
 class TiledMap;
 class Bomb;
+
 class gamelayer :public Layer
 {
 public:
@@ -46,6 +49,7 @@ public:
 
 	countDownBar* CountDownBar;
 	SceneManager *tsm;
+	//Switch* mySwitch;
 
 	std::map<int, int> figureTeam = { { 0,RED },{ 1,BLUE } };
 	std::list<Bomb*> allBombs;
@@ -85,4 +89,13 @@ public:
 	void gameOver(float dt);
 
 	void finishGame(float dt);
+
+	void addSwitch();
+	void change(Object* pSender, Control::EventType event);
+
+	virtual void onEnter();
+	virtual void onEnterTransitionDidFinish();
+	virtual void onExit();
+	virtual void onExitTransitionDidStart();
+	virtual void cleanup();
 };

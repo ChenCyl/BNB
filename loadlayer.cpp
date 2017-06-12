@@ -1,8 +1,8 @@
 #include "loadlayer.h"
 #include "cocos2d.h"
-#include "Switch.h"
+#include "SimpleAudioEngine.h"
 USING_NS_CC;
-using namespace cocos2d;
+using namespace CocosDenshion;
 bool loadlayer::init()
 {
 	Size winSize = Director::getInstance()->getWinSize();
@@ -23,8 +23,9 @@ bool loadlayer::init()
 	auto menu = Menu::create(menuItem, menuItem_2, NULL);
 	menu->setPosition(Point::ZERO);
 	this->addChild(menu);
-	auto* mySwitch = Switch::createSwitch(1, 0, false);
-	addChild(mySwitch);
+	
+	addSwitch();
+
 	return true;
 }
 void loadlayer::menucallback(Ref *psender)
@@ -34,11 +35,13 @@ void loadlayer::menucallback(Ref *psender)
 	case 101:
 	{
 		tsm->goClientScene();
+		SimpleAudioEngine::getInstance()->playEffect("effect5.wav");
 	}
 		break;
 	case 102:
 	{
 		tsm->goserverscene();
+		SimpleAudioEngine::getInstance()->playEffect("effect5.wav");
 	}
 
 		break;
@@ -46,4 +49,25 @@ void loadlayer::menucallback(Ref *psender)
 	default:
 		break;
 	}
+}
+
+void loadlayer::onEnter() {
+	Layer::onEnter();
+}
+
+void loadlayer::onEnterTransitionDidFinish() {
+	Layer::onEnterTransitionDidFinish();
+	SimpleAudioEngine::getInstance()->playBackgroundMusic("bg1.mp3", true);
+}
+
+void loadlayer::onExit() {
+	Layer::onExit();
+}
+
+void loadlayer::onExitTransitionDidStart() {
+	Layer::onExitTransitionDidStart();
+}
+
+void loadlayer::cleanup() {
+	Layer::cleanup();
 }

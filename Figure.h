@@ -43,15 +43,18 @@ public:
 
 
 	float speed;//速度
-	int killNum;//杀敌数
+	int killNum=0;//杀敌数
+	int saveNum=0;//救人数
 	int state;//状态
-	int score;//分数
-	int bombNum;//炸弹个数
-	int bombNum_avail;//剩余炸弹个数
-	int bombPower;//炸弹威力
+	int score=0;//分数
+	int bombNum=1;//炸弹个数
+	int bombNum_avail=1;//剩余炸弹个数
+	int bombPower=1;//炸弹威力
 	gamelayer* myGamelayer;//所在的游戏层
-	LabelTTF* labelBombNum;
+	LabelTTF* labelScore;
 	LabelTTF* labelBombNum_avail;
+	LabelTTF* labelKill;
+	LabelTTF* labelSave;
 	
 	static Figure* createFigureSprite(Point position, int direction,int type, int team,int tag);//创建人物
 	void figureInit(Point position, int direction, int type, int team,int tag);//初始化人物
@@ -65,7 +68,7 @@ public:
 	void Die(float dt);
 	void Win();
 	void Delete();
-	/*void recoverBomb(float dt);*/
+
 	void labelInit(int tag);
 	void updateLabel();
 

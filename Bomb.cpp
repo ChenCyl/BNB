@@ -79,7 +79,7 @@ void Bomb::initExplode(std::vector<Point>&vec) {
 }
 
 void Bomb::explode(float dt) {
-
+	SimpleAudioEngine::getInstance()->playEffect("effect4.wav");
 	addChildExplosion(bombRange[0].x+40, position.x, position.y, explode_line_left);
 	addChildExplosion(position.x+40, bombRange[1].x, position.y, explode_line_right);
 	addChildExplosion(position.y + 40, bombRange[2].y, position.x, explode_row_up);
@@ -90,7 +90,9 @@ void Bomb::explode(float dt) {
 	addExplosionAnimate(bombRange[3], explode_end_down);
 	myGamelayer->bombifPlayer(bombRange);
 	scheduleOnce(schedule_selector(Bomb::deleteExplode), 0.5f);
-	
+
+	++(myGamelayer->players[playerTag]->bombNum_avail);
+	myGamelayer->players[playerTag]->updateLabel();
 }
 
 void Bomb::bombDynamic() {
@@ -119,7 +121,7 @@ void Bomb::bombExplode(float dt) {
 	{
 		myGamelayer->bombBomb(bombRange, bombTag);
 		bomb->stopAllActions();
-		auto* action = createAnimate("bombExplode", 4, 1);
+		auto* action = createAnimate("bombExplode", 5, 1);
 		auto* callFunc = CallFunc::create(CC_CALLBACK_0(Bomb::deleteBomb, this));
 		auto* sequence = Sequence::create(action, callFunc, NULL);
 		bomb->runAction(sequence);
@@ -143,9 +145,6 @@ void Bomb::bombExplode(float dt) {
 	default:
 		break;
 	}
-	
-	++(myGamelayer->players[playerTag]->bombNum_avail);
-	myGamelayer->players[playerTag]->updateLabel();
 }
 
 Animate* Bomb::createAnimate(const char *action, int num,int time) {

@@ -18,7 +18,7 @@ bool finishlayer::init()
 	menuItem->setTag(101);
 	menuItem->setPosition(Vec2(winSize.width *0.8, winSize.height*0.3));
 
-	MenuItemLabel *menuItem_2 = MenuItemLabel::create(Label::createWithSystemFont("Return", "", 30), CC_CALLBACK_1(finishlayer::menucallback, this));
+	MenuItemLabel *menuItem_2 = MenuItemLabel::create(Label::createWithSystemFont("Exit", "", 30), CC_CALLBACK_1(finishlayer::menucallback, this));
 	menuItem_2->setTag(102);
 	menuItem_2->setPosition(Vec2(winSize.width *0.8, winSize.height*0.15));
 

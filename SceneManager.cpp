@@ -26,9 +26,7 @@ void SceneManager::gochoosescene(int chooseNum,bool isClient)
 	layer->chooselayerInit();
 	choosescene->addChild(layer);
 	
-	Director::getInstance()->replaceScene(choosescene);
-
-
+	Director::getInstance()->pushScene(choosescene);
 
 }
 void SceneManager::gogamescene()

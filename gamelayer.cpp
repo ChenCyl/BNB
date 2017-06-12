@@ -9,6 +9,8 @@
 #include <iterator>
 #include <algorithm>
 #include <numeric>
+#include "SimpleAudioEngine.h"
+using namespace CocosDenshion;
 
 USING_NS_CC;
 
@@ -32,7 +34,6 @@ bool gamelayer::init()
 	Sprite* gameFrame = Sprite::create("BG.png");
 	gameFrame->setAnchorPoint(ccp(0, 0));
 	addChild(gameFrame);
-
 	return true;
 };
 
@@ -41,7 +42,7 @@ void gamelayer::gamelayerInit() {
 	loadMap();
 	loadFigure();
 	loadBar();
-
+	addSwitch();
 	schedule(schedule_selector(gamelayer::myUpdate), 0.2f);
 }
 
@@ -161,6 +162,7 @@ void gamelayer::putBomb(int playerTag, Point position) {
 		++allBombNum;
 		allBombs.push_back(myBomb);
 		myMap->_map->addChild(myBomb, 0);
+		SimpleAudioEngine::getInstance()->playEffect("effect1.wav");
 		myBomb->bombDynamic();
 		std::vector<Point> bombRange = myMap->calculateBomRangPoint(mP, bombPower);//计算炸弹所炸最远范围
 		myBomb->initExplode(bombRange);//炸弹爆炸
@@ -184,7 +186,10 @@ bool gamelayer::moveifPlayer(int doerTag) {
 					if (figures->state == STATE_BOXED) //敌队已被困
 					{
 						figures->Die(0.0);
+						SimpleAudioEngine::getInstance()->playEffect("effect2.wav");
 						++players[doerTag]->killNum;
+						players[doerTag]->score+=666;
+						players[doerTag]->updateLabel();
 						return true;
 					}
 					if (figures->state == STATE_FREE&&figures->speed != players[doerTag]->speed) //敌队活着，不能一起走
@@ -196,6 +201,10 @@ bool gamelayer::moveifPlayer(int doerTag) {
 					if (figures->state == STATE_BOXED)//救战友
 					{
 						figures->BeSaved();
+						SimpleAudioEngine::getInstance()->playEffect("effect7.wav");
+						++players[doerTag]->saveNum;
+						players[doerTag]->score += 233;
+						players[doerTag]->updateLabel();
 						return true;
 					}
 					if (figures->state == STATE_FREE&&figures->speed != players[doerTag]->speed) //友队活着，不能一起走
@@ -222,6 +231,7 @@ void gamelayer::getTool(int tag, Point position){
 	int toolType = myMap->eatTool(position);
 	if (toolType != 0) {
 		players[tag]->CollectTool(toolType);
+		SimpleAudioEngine::getInstance()->playEffect("effect5.wav");
 	}
 }
 
@@ -307,6 +317,9 @@ void gamelayer::myUpdate(float dt) {
 					}
 				}
 			}
+			else {
+				SimpleAudioEngine::getInstance()->playEffect("effect3.wav");
+			}
 		}
 		scheduleOnce(schedule_selector(gamelayer::gameOver), 3.0f);  //展示得分的函数
 		return;
@@ -324,6 +337,7 @@ void gamelayer::myUpdate(float dt) {
 				if (aiAllDie) {
 					for (auto& figure:user) {
 						figure->Win();
+						
 						winPlayers.push_back(figure);
 					}
 				}
@@ -545,4 +559,52 @@ bool gamelayer::canBomb(Point mP) {
 		}
 	}
 	return true;
+}
+
+void gamelayer::onEnter() {
+	Layer::onEnter();
+}
+
+void gamelayer::onEnterTransitionDidFinish() {
+	Layer::onEnterTransitionDidFinish();
+	SimpleAudioEngine::getInstance()->playBackgroundMusic("bg2.mp3", true);
+	SimpleAudioEngine::getInstance()->playEffect("effect8.wav");
+}
+
+void gamelayer::onExit() {
+	Layer::onExit();
+}
+
+void gamelayer::onExitTransitionDidStart() {
+	Layer::onExitTransitionDidStart();
+}
+
+void gamelayer::cleanup() {
+	Layer::cleanup();
+
+}
+
+void gamelayer::addSwitch() {
+	auto* switchBG = Sprite::create("background.png");
+	auto* switchOn = Sprite::create("on.png");
+	auto* switchOff = Sprite::create("off.png");
+	auto* switchBar = Sprite::create("button.png");
+	auto* on = Label::create("on", "Arial", 15);
+	auto* off = Label::create("pause", "Arial", 15);
+	auto* controlSwitch = ControlSwitch::create(switchBG, switchOn, switchOff, switchBar, on, off);
+	controlSwitch->setPosition(Vec2(80, 40));
+	addChild(controlSwitch);
+	controlSwitch->addTargetWithActionForControlEvents(this, cccontrol_selector(gamelayer::change), Control::EventType::VALUE_CHANGED);
+}
+
+void gamelayer::change(Object* pSender, Control::EventType event) {
+	if (event == Control::EventType::VALUE_CHANGED) {
+		auto* s = (ControlSwitch*)pSender;
+		if (s->isOn()) {
+			CocosDenshion::SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
+		}
+		else {
+			CocosDenshion::SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
+		}
+	}
 }

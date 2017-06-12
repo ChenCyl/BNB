@@ -2,7 +2,7 @@
 #include "cocos2d.h"
 
 USING_NS_CC;
-using namespace cocos2d;
+using namespace CocosDenshion;
 bool clientLayer::init()
 {
 	Size winSize = Director::getInstance()->getWinSize();
@@ -27,12 +27,13 @@ bool clientLayer::init()
 	auto menu = Menu::create(menuItem, menuItem_2, menuItem_3, NULL);
 	menu->setPosition(Point::ZERO);
 	this->addChild(menu);
-
+	addSwitch();
 
 	return true;
 }
 void clientLayer::menucallback(Ref *psender)
 {
+	SimpleAudioEngine::getInstance()->playEffect("effect1.wav");
 	switch (((MenuItem *)psender)->getTag())
 	{
 	case 101:

@@ -2,6 +2,7 @@
 #include <iostream>
 #include "cocos2d.h"
 #include "SceneManager.h"
+#include "mainLayer.h"
 
 #define RED 1
 #define GREEN 2
@@ -12,8 +13,8 @@
 #define MAP2 2
 #define MAP3 3
 #define MAP4 4
-
-class chooselayer :public Layer
+class Switch;
+class chooselayer :public mainLayer
 {
 public:
 	int userOne=RED,userTwo=BLUE;
@@ -22,11 +23,19 @@ public:
 	bool isClient;
 	CREATE_FUNC(chooselayer);
 	virtual bool init();
+	virtual void onEnter();
+	virtual void onEnterTransitionDidFinish();
+	virtual void onExit();
+	virtual void onExitTransitionDidStart();
+	virtual void cleanup();
+
+
 	void menucallback(Ref *psender);
 	void figurecallback(Ref *psender);
 	void mapcallback(Ref *psender);
 	void showFigureChoose(float y=100);
 	void chooselayerInit();
+
 public:
 	SceneManager *tsm;
 	
