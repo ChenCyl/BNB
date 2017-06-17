@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="17" height="15" tilewidth="40" tileheight="40" nextobjectid="8">
+ <tileset firstgid="1" name="groundmap3" tilewidth="40" tileheight="40" tilecount="10" columns="10">
+  <image source="groundmap3.png" width="400" height="40"/>
+ </tileset>
+ <tileset firstgid="11" name="camp" tilewidth="40" tileheight="40" tilecount="27" columns="9">
+  <image source="camp.png" width="360" height="120"/>
+  <tile id="0">
+   <properties>
+    <property name="CanExplode" value="true"/>
+    <property name="Collidable" value="true"/>
+    <property name="Tool" value=""/>
+   </properties>
+  </tile>
+  <tile id="1">
+   <properties>
+    <property name="CanExplode" value="false"/>
+    <property name="Collidable" value="true"/>
+    <property name="Tool" value=""/>
+   </properties>
+  </tile>
+  <tile id="2">
+   <properties>
+    <property name="CanExplode" value="true"/>
+    <property name="Collidable" value="true"/>
+    <property name="Tool" value=""/>
+   </properties>
+  </tile>
+  <tile id="3">
+   <properties>
+    <property name="CanExplode" value="false"/>
+    <property name="Collidable" value="true"/>
+    <property name="Tool" value=""/>
+   </properties>
+  </tile>
+  <tile id="4">
+   <properties>
+    <property name="CanExplode" value="false"/>
+    <property name="Collidable" value="true"/>
+    <property name="Tool" value=""/>
+   </properties>
+  </tile>
+  <tile id="5">
+   <properties>
+    <property name="CanExplode" value="false"/>
+    <property name="Collidable" value="true"/>
+    <property name="Tool" value=""/>
+   </properties>
+  </tile>
+  <tile id="6">
+   <properties>
+    <property name="CanExplode" value=""/>
+    <property name="Collidable" value=""/>
+   </properties>
+  </tile>
+  <tile id="7">
+   <properties>
+    <property name="CanExplode" value=""/>
+    <property name="Collidable" value=""/>
+   </properties>
+  </tile>
+  <tile id="8">
+   <properties>
+    <property name="CanExplode" value=""/>
+    <property name="Collidable" value=""/>
+   </properties>
+  </tile>
+  <tile id="9">
+   <properties>
+    <property name="CanExplode" value="false"/>
+    <property name="Collidable" value="true"/>
+    <property name="Tool" value=""/>
+   </properties>
+  </tile>
+  <tile id="10">
+   <properties>
+    <property name="CanExplode" value="true"/>
+    <property name="Collidable" value="false"/>
+    <property name="Tool" value="liquid"/>
+   </properties>
+  </tile>
+  <tile id="11">
+   <properties>
+    <property name="CanExplode" value="true"/>
+    <property name="Collidable" value="false"/>
+    <property name="Tool" value="shoe"/>
+   </properties>
+  </tile>
+  <tile id="12">
+   <properties>
+    <property name="CanExplode" value="true"/>
+    <property name="Collidable" value="false"/>
+    <property name="Tool" value="bomb"/>
+   </properties>
+  </tile>
+  <tile id="13">
+   <properties>
+    <property name="CanExplode" value=""/>
+    <property name="Collidable" value=""/>
+    <property name="Tool" value=""/>
+   </properties>
+  </tile>
+  <tile id="14">
+   <properties>
+    <property name="CanExplode" value=""/>
+    <property name="Collidable" value=""/>
+    <property name="Tool" value=""/>
+   </properties>
+  </tile>
+  <tile id="15">
+   <properties>
+    <property name="CanExplode" value=""/>
+    <property name="Collidable" value=""/>
+   </properties>
+  </tile>
+  <tile id="16">
+   <properties>
+    <property name="CanExplode" value=""/>
+    <property name="Collidable" value=""/>
+   </properties>
+  </tile>
+  <tile id="17">
+   <properties>
+    <property name="CanExplode" value=""/>
+    <property name="Collidable" value=""/>
+   </properties>
+  </tile>
+  <tile id="18">
+   <properties>
+    <property name="CanExplode" value="false"/>
+    <property name="Collidable" value="true"/>
+    <property name="Tool" value=""/>
+   </properties>
+  </tile>
+  <tile id="19">
+   <properties>
+    <property name="CanExplode" value="false"/>
+    <property name="Collidable" value="true"/>
+    <property name="Tool" value=""/>
+   </properties>
+  </tile>
+  <tile id="20">
+   <properties>
+    <property name="CanExplode" value="false"/>
+    <property name="Collidable" value="true"/>
+    <property name="Tool" value=""/>
+   </properties>
+  </tile>
+  <tile id="21">
+   <properties>
+    <property name="CanExplode" value="false"/>
+    <property name="Collidable" value="true"/>
+    <property name="Tool" value=""/>
+   </properties>
+  </tile>
+  <tile id="22">
+   <properties>
+    <property name="CanExplode" value="true"/>
+    <property name="Collidable" value="true"/>
+    <property name="Tool" value=""/>
+   </properties>
+  </tile>
+  <tile id="23">
+   <properties>
+    <property name="CanExplode" value="true"/>
+    <property name="Collidable" value="true"/>
+    <property name="Tool" value=""/>
+   </properties>
+  </tile>
+  <tile id="24">
+   <properties>
+    <property name="CanExplode" value=""/>
+    <property name="Collidable" value=""/>
+   </properties>
+  </tile>
+  <tile id="25">
+   <properties>
+    <property name="CanExplode" value=""/>
+    <property name="Collidable" value=""/>
+   </properties>
+  </tile>
+  <tile id="26">
+   <properties>
+    <property name="CanExplode" value=""/>
+    <property name="Collidable" value=""/>
+   </properties>
+  </tile>
+ </tileset>
+ <tileset firstgid="38" name="dangmap3" tilewidth="40" tileheight="40" tilecount="27" columns="9">
+  <image source="dangmap3.png" width="360" height="120"/>
+ </tileset>
+ <layer name="layer1" width="17" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYKAOYKQAj5pBXTOYKDSDiUIzmCg0g4lCM9D1k2oGNv2kmIFLP7Fm4NOPbAalAACsWwDo
+  </data>
+ </layer>
+ <layer name="layer2" width="17" height="15">
+  <data encoding="base64" compression="zlib">
+   eJytk0EOgzAMBHMPaXOg7YkW+P8jSaSstBo5PbHSCinYY8eYNaW03uBIeWKKjDLs8WTUERMxXuPdYnZV46rWB4xijEfzEwzVzhZbjBHdtdjTe2cs58FedQf5jbgDDJ/ZTN7DN+jjX361GNWXo/3wWhXnqq989uGzzsgT90C+MzS/PjPuB++/Nf+a96APyfdU+eewcmcM7oHU6+vbbsaT7/hfuy88vgxd
+  </data>
+ </layer>
+ <objectgroup name="object">
+  <object id="2" name="figure1" x="60" y="100"/>
+  <object id="3" name="figure2" x="580" y="60"/>
+  <object id="5" name="figure3" x="100" y="500"/>
+  <object id="7" name="figure4" x="620" y="460"/>
+ </objectgroup>
+ <layer name="layerempty" width="17" height="15">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2AUjEQAAAP8AAE=
+  </data>
+ </layer>
+ <layer name="layer3" width="17" height="15">
+  <data encoding="base64" compression="zlib">
+   eJzNUlsOgCAM4zSI7kP9w9f9ryUkNGkaJr82aUzY2rJJCH1EhyOkRu5XD2s9PaytNhEZRr7I2p07VO1cuHTquFciBjrXWRN9R71B6qoz4iZ9d0ePnX1lQH84dU9v1IN8cJRlco58T8+7jqKD71c+9ld3pu9D58+FZ+HlzAE/fdtPI7Seh74DoObj32byA/+EF+ycE3k=
+  </data>
+ </layer>
+</map>

@@ -1,0 +1,371 @@
+﻿  AppDelegate.cpp
+  Bomb.cpp
+  chooselayer.cpp
+  clientLayer.cpp
+..\Classes\AppDelegate.cpp(81): warning C4996: 'CocosDenshion::SimpleAudioEngine::sharedEngine': 被声明为已否决
+  D:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\audio\include\SimpleAudioEngine.h(70): note: 参见“CocosDenshion::SimpleAudioEngine::sharedEngine”的声明
+..\Classes\AppDelegate.cpp(85): warning C4996: 'CocosDenshion::SimpleAudioEngine::sharedEngine': 被声明为已否决
+  D:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\audio\include\SimpleAudioEngine.h(70): note: 参见“CocosDenshion::SimpleAudioEngine::sharedEngine”的声明
+..\Classes\chooselayer.cpp(181): warning C4996: 'cocos2d::TextureCache::sharedTextureCache': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\renderer/CCTextureCache.h(71): note: 参见“cocos2d::TextureCache::sharedTextureCache”的声明
+..\Classes\chooselayer.cpp(182): warning C4996: 'cocos2d::TextureCache::sharedTextureCache': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\renderer/CCTextureCache.h(71): note: 参见“cocos2d::TextureCache::sharedTextureCache”的声明
+..\Classes\chooselayer.cpp(183): warning C4996: 'cocos2d::TextureCache::sharedTextureCache': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\renderer/CCTextureCache.h(71): note: 参见“cocos2d::TextureCache::sharedTextureCache”的声明
+..\Classes\chooselayer.cpp(184): warning C4996: 'cocos2d::TextureCache::sharedTextureCache': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\renderer/CCTextureCache.h(71): note: 参见“cocos2d::TextureCache::sharedTextureCache”的声明
+..\Classes\chooselayer.cpp(191): warning C4996: 'cocos2d::TextureCache::sharedTextureCache': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\renderer/CCTextureCache.h(71): note: 参见“cocos2d::TextureCache::sharedTextureCache”的声明
+..\Classes\chooselayer.cpp(192): warning C4996: 'cocos2d::TextureCache::sharedTextureCache': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\renderer/CCTextureCache.h(71): note: 参见“cocos2d::TextureCache::sharedTextureCache”的声明
+..\Classes\chooselayer.cpp(193): warning C4996: 'cocos2d::TextureCache::sharedTextureCache': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\renderer/CCTextureCache.h(71): note: 参见“cocos2d::TextureCache::sharedTextureCache”的声明
+..\Classes\chooselayer.cpp(194): warning C4996: 'cocos2d::TextureCache::sharedTextureCache': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\renderer/CCTextureCache.h(71): note: 参见“cocos2d::TextureCache::sharedTextureCache”的声明
+..\Classes\chooselayer.cpp(230): warning C4996: 'cocos2d::TextureCache::sharedTextureCache': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\renderer/CCTextureCache.h(71): note: 参见“cocos2d::TextureCache::sharedTextureCache”的声明
+..\Classes\chooselayer.cpp(231): warning C4996: 'cocos2d::TextureCache::sharedTextureCache': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\renderer/CCTextureCache.h(71): note: 参见“cocos2d::TextureCache::sharedTextureCache”的声明
+..\Classes\chooselayer.cpp(232): warning C4996: 'cocos2d::TextureCache::sharedTextureCache': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\renderer/CCTextureCache.h(71): note: 参见“cocos2d::TextureCache::sharedTextureCache”的声明
+d:\mygame\newtest\classes\Figure.h(57): warning C4996: 'cocos2d::LabelTTF': 被声明为已否决 (编译源文件 ..\Classes\Bomb.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(67): note: 参见“cocos2d::LabelTTF”的声明 (编译源文件 ..\Classes\Bomb.cpp)
+d:\mygame\newtest\classes\Figure.h(58): warning C4996: 'cocos2d::LabelTTF': 被声明为已否决 (编译源文件 ..\Classes\Bomb.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(67): note: 参见“cocos2d::LabelTTF”的声明 (编译源文件 ..\Classes\Bomb.cpp)
+d:\mygame\newtest\classes\Figure.h(59): warning C4996: 'cocos2d::LabelTTF': 被声明为已否决 (编译源文件 ..\Classes\Bomb.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(67): note: 参见“cocos2d::LabelTTF”的声明 (编译源文件 ..\Classes\Bomb.cpp)
+d:\mygame\newtest\classes\Figure.h(60): warning C4996: 'cocos2d::LabelTTF': 被声明为已否决 (编译源文件 ..\Classes\Bomb.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(67): note: 参见“cocos2d::LabelTTF”的声明 (编译源文件 ..\Classes\Bomb.cpp)
+d:\mygame\newtest\classes\Figure.h(61): warning C4996: 'cocos2d::LabelTTF': 被声明为已否决 (编译源文件 ..\Classes\Bomb.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(67): note: 参见“cocos2d::LabelTTF”的声明 (编译源文件 ..\Classes\Bomb.cpp)
+d:\mygame\newtest\classes\countDownBar.h(14): warning C4996: 'cocos2d::LabelTTF': 被声明为已否决 (编译源文件 ..\Classes\Bomb.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(67): note: 参见“cocos2d::LabelTTF”的声明 (编译源文件 ..\Classes\Bomb.cpp)
+d:\mygame\newtest\classes\gamelayer.h(98): warning C4996: 'cocos2d::Object': 被声明为已否决 (编译源文件 ..\Classes\Bomb.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\deprecated/CCDeprecated.h(539): note: 参见“cocos2d::Object”的声明 (编译源文件 ..\Classes\Bomb.cpp)
+d:\mygame\newtest\classes\mainLayer.h(14): warning C4996: 'cocos2d::Object': 被声明为已否决 (编译源文件 ..\Classes\clientLayer.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\deprecated/CCDeprecated.h(539): note: 参见“cocos2d::Object”的声明 (编译源文件 ..\Classes\clientLayer.cpp)
+..\Classes\Bomb.cpp(33): warning C4305: “参数”: 从“double”到“float”截断
+..\Classes\Bomb.cpp(33): warning C4996: 'cocos2d::ccp': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\deprecated/CCDeprecated.h(49): note: 参见“cocos2d::ccp”的声明
+..\Classes\clientLayer.cpp(65): warning C4305: “参数”: 从“double”到“float”截断
+  countDownBar.cpp
+  Figure.cpp
+  finishlayer.cpp
+  gamelayer.cpp
+d:\mygame\newtest\classes\countDownBar.h(14): warning C4996: 'cocos2d::LabelTTF': 被声明为已否决 (编译源文件 ..\Classes\countDownBar.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(67): note: 参见“cocos2d::LabelTTF”的声明 (编译源文件 ..\Classes\countDownBar.cpp)
+..\Classes\countDownBar.cpp(16): warning C4996: 'cocos2d::LabelTTF::setString': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(129): note: 参见“cocos2d::LabelTTF::setString”的声明
+..\Classes\countDownBar.cpp(44): warning C4996: 'cocos2d::LabelTTF::create': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(83): note: 参见“cocos2d::LabelTTF::create”的声明
+..\Classes\countDownBar.cpp(46): warning C4996: 'cocos2d::LabelTTF::setFontFillColor': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(120): note: 参见“cocos2d::LabelTTF::setFontFillColor”的声明
+d:\mygame\newtest\classes\countDownBar.h(14): warning C4996: 'cocos2d::LabelTTF': 被声明为已否决 (编译源文件 ..\Classes\Figure.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(67): note: 参见“cocos2d::LabelTTF”的声明 (编译源文件 ..\Classes\Figure.cpp)
+d:\mygame\newtest\classes\gamelayer.h(98): warning C4996: 'cocos2d::Object': 被声明为已否决 (编译源文件 ..\Classes\Figure.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\deprecated/CCDeprecated.h(539): note: 参见“cocos2d::Object”的声明 (编译源文件 ..\Classes\Figure.cpp)
+d:\mygame\newtest\classes\Figure.h(57): warning C4996: 'cocos2d::LabelTTF': 被声明为已否决 (编译源文件 ..\Classes\gamelayer.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(67): note: 参见“cocos2d::LabelTTF”的声明 (编译源文件 ..\Classes\gamelayer.cpp)
+d:\mygame\newtest\classes\Figure.h(58): warning C4996: 'cocos2d::LabelTTF': 被声明为已否决 (编译源文件 ..\Classes\gamelayer.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(67): note: 参见“cocos2d::LabelTTF”的声明 (编译源文件 ..\Classes\gamelayer.cpp)
+d:\mygame\newtest\classes\Figure.h(59): warning C4996: 'cocos2d::LabelTTF': 被声明为已否决 (编译源文件 ..\Classes\gamelayer.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(67): note: 参见“cocos2d::LabelTTF”的声明 (编译源文件 ..\Classes\gamelayer.cpp)
+d:\mygame\newtest\classes\Figure.h(60): warning C4996: 'cocos2d::LabelTTF': 被声明为已否决 (编译源文件 ..\Classes\gamelayer.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(67): note: 参见“cocos2d::LabelTTF”的声明 (编译源文件 ..\Classes\gamelayer.cpp)
+d:\mygame\newtest\classes\Figure.h(61): warning C4996: 'cocos2d::LabelTTF': 被声明为已否决 (编译源文件 ..\Classes\gamelayer.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(67): note: 参见“cocos2d::LabelTTF”的声明 (编译源文件 ..\Classes\gamelayer.cpp)
+d:\mygame\newtest\classes\Figure.h(57): warning C4996: 'cocos2d::LabelTTF': 被声明为已否决 (编译源文件 ..\Classes\Figure.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(67): note: 参见“cocos2d::LabelTTF”的声明 (编译源文件 ..\Classes\Figure.cpp)
+d:\mygame\newtest\classes\Figure.h(58): warning C4996: 'cocos2d::LabelTTF': 被声明为已否决 (编译源文件 ..\Classes\Figure.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(67): note: 参见“cocos2d::LabelTTF”的声明 (编译源文件 ..\Classes\Figure.cpp)
+d:\mygame\newtest\classes\Figure.h(59): warning C4996: 'cocos2d::LabelTTF': 被声明为已否决 (编译源文件 ..\Classes\Figure.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(67): note: 参见“cocos2d::LabelTTF”的声明 (编译源文件 ..\Classes\Figure.cpp)
+d:\mygame\newtest\classes\Figure.h(60): warning C4996: 'cocos2d::LabelTTF': 被声明为已否决 (编译源文件 ..\Classes\Figure.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(67): note: 参见“cocos2d::LabelTTF”的声明 (编译源文件 ..\Classes\Figure.cpp)
+d:\mygame\newtest\classes\Figure.h(61): warning C4996: 'cocos2d::LabelTTF': 被声明为已否决 (编译源文件 ..\Classes\Figure.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(67): note: 参见“cocos2d::LabelTTF”的声明 (编译源文件 ..\Classes\Figure.cpp)
+..\Classes\Figure.cpp(63): warning C4305: “参数”: 从“double”到“float”截断
+..\Classes\Figure.cpp(63): warning C4996: 'cocos2d::ccp': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\deprecated/CCDeprecated.h(49): note: 参见“cocos2d::ccp”的声明
+..\Classes\Figure.cpp(105): warning C4305: “参数”: 从“double”到“float”截断
+d:\mygame\newtest\classes\countDownBar.h(14): warning C4996: 'cocos2d::LabelTTF': 被声明为已否决 (编译源文件 ..\Classes\gamelayer.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(67): note: 参见“cocos2d::LabelTTF”的声明 (编译源文件 ..\Classes\gamelayer.cpp)
+..\Classes\Figure.cpp(211): warning C4996: 'cocos2d::LabelTTF::create': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(83): note: 参见“cocos2d::LabelTTF::create”的声明
+..\Classes\Figure.cpp(213): warning C4996: 'cocos2d::LabelTTF::setFontFillColor': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(120): note: 参见“cocos2d::LabelTTF::setFontFillColor”的声明
+..\Classes\Figure.cpp(216): warning C4996: 'cocos2d::LabelTTF::create': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(83): note: 参见“cocos2d::LabelTTF::create”的声明
+..\Classes\Figure.cpp(218): warning C4996: 'cocos2d::LabelTTF::setFontFillColor': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(120): note: 参见“cocos2d::LabelTTF::setFontFillColor”的声明
+..\Classes\Figure.cpp(221): warning C4996: 'cocos2d::LabelTTF::create': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(83): note: 参见“cocos2d::LabelTTF::create”的声明
+..\Classes\Figure.cpp(223): warning C4996: 'cocos2d::LabelTTF::setFontFillColor': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(120): note: 参见“cocos2d::LabelTTF::setFontFillColor”的声明
+..\Classes\Figure.cpp(226): warning C4996: 'cocos2d::LabelTTF::create': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(83): note: 参见“cocos2d::LabelTTF::create”的声明
+..\Classes\Figure.cpp(228): warning C4996: 'cocos2d::LabelTTF::setFontFillColor': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(120): note: 参见“cocos2d::LabelTTF::setFontFillColor”的声明
+..\Classes\Figure.cpp(231): warning C4996: 'cocos2d::LabelTTF::create': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(83): note: 参见“cocos2d::LabelTTF::create”的声明
+..\Classes\Figure.cpp(233): warning C4996: 'cocos2d::LabelTTF::setFontFillColor': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(120): note: 参见“cocos2d::LabelTTF::setFontFillColor”的声明
+..\Classes\Figure.cpp(246): warning C4996: 'cocos2d::LabelTTF::setString': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(129): note: 参见“cocos2d::LabelTTF::setString”的声明
+..\Classes\Figure.cpp(248): warning C4996: 'cocos2d::LabelTTF::setString': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(129): note: 参见“cocos2d::LabelTTF::setString”的声明
+..\Classes\Figure.cpp(250): warning C4996: 'cocos2d::LabelTTF::setString': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(129): note: 参见“cocos2d::LabelTTF::setString”的声明
+..\Classes\Figure.cpp(252): warning C4996: 'cocos2d::LabelTTF::setString': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(129): note: 参见“cocos2d::LabelTTF::setString”的声明
+..\Classes\Figure.cpp(256): warning C4996: 'cocos2d::Node::unscheduleAllSelectors': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCNode.h(1456): note: 参见“cocos2d::Node::unscheduleAllSelectors”的声明
+..\Classes\Figure.cpp(266): warning C4996: 'cocos2d::LabelTTF::create': 被声明为已否决
+d:\mygame\newtest\classes\gamelayer.h(98): warning C4996: 'cocos2d::Object': 被声明为已否决 (编译源文件 ..\Classes\gamelayer.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(83): note: 参见“cocos2d::LabelTTF::create”的声明
+..\Classes\Figure.cpp(268): warning C4996: 'cocos2d::LabelTTF::setFontFillColor': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(120): note: 参见“cocos2d::LabelTTF::setFontFillColor”的声明
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\deprecated/CCDeprecated.h(539): note: 参见“cocos2d::Object”的声明 (编译源文件 ..\Classes\gamelayer.cpp)
+..\Classes\Figure.cpp(272): warning C4996: 'cocos2d::LabelTTF::create': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(83): note: 参见“cocos2d::LabelTTF::create”的声明
+..\Classes\Figure.cpp(274): warning C4996: 'cocos2d::LabelTTF::setFontFillColor': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(120): note: 参见“cocos2d::LabelTTF::setFontFillColor”的声明
+..\Classes\Figure.cpp(278): warning C4996: 'cocos2d::LabelTTF::create': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(83): note: 参见“cocos2d::LabelTTF::create”的声明
+..\Classes\Figure.cpp(280): warning C4996: 'cocos2d::LabelTTF::setFontFillColor': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(120): note: 参见“cocos2d::LabelTTF::setFontFillColor”的声明
+..\Classes\gamelayer.cpp(35): warning C4996: 'cocos2d::ccp': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\deprecated/CCDeprecated.h(49): note: 参见“cocos2d::ccp”的声明
+..\Classes\gamelayer.cpp(74): warning C4996: 'cocos2d::ccp': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\deprecated/CCDeprecated.h(49): note: 参见“cocos2d::ccp”的声明
+..\Classes\gamelayer.cpp(590): warning C4305: “参数”: 从“double”到“float”截断
+..\Classes\gamelayer.cpp(597): warning C4305: “参数”: 从“double”到“float”截断
+..\Classes\gamelayer.cpp(625): warning C4305: “参数”: 从“double”到“float”截断
+..\Classes\gamelayer.cpp(581): warning C4996: 'cocos2d::LabelTTF::create': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(83): note: 参见“cocos2d::LabelTTF::create”的声明
+..\Classes\gamelayer.cpp(584): warning C4996: 'cocos2d::LabelTTF::setFontFillColor': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(120): note: 参见“cocos2d::LabelTTF::setFontFillColor”的声明
+..\Classes\gamelayer.cpp(606): warning C4996: 'cocos2d::LabelTTF::create': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(83): note: 参见“cocos2d::LabelTTF::create”的声明
+..\Classes\gamelayer.cpp(608): warning C4996: 'cocos2d::LabelTTF::setFontFillColor': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(120): note: 参见“cocos2d::LabelTTF::setFontFillColor”的声明
+..\Classes\gamelayer.cpp(613): warning C4996: 'cocos2d::LabelTTF::create': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(83): note: 参见“cocos2d::LabelTTF::create”的声明
+..\Classes\gamelayer.cpp(615): warning C4996: 'cocos2d::LabelTTF::setFontFillColor': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(120): note: 参见“cocos2d::LabelTTF::setFontFillColor”的声明
+..\Classes\gamelayer.cpp(630): warning C4996: 'cocos2d::LabelTTF::create': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(83): note: 参见“cocos2d::LabelTTF::create”的声明
+..\Classes\gamelayer.cpp(632): warning C4996: 'cocos2d::LabelTTF::setFontFillColor': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(120): note: 参见“cocos2d::LabelTTF::setFontFillColor”的声明
+..\Classes\gamelayer.cpp(642): warning C4996: 'cocos2d::Node::unscheduleAllSelectors': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCNode.h(1456): note: 参见“cocos2d::Node::unscheduleAllSelectors”的声明
+..\Classes\gamelayer.cpp(768): warning C4996: 'cocos2d::Label::create': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabel.h(461): note: 参见“cocos2d::Label::create”的声明
+..\Classes\gamelayer.cpp(769): warning C4996: 'cocos2d::Label::create': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabel.h(461): note: 参见“cocos2d::Label::create”的声明
+..\Classes\gamelayer.cpp(776): warning C4996: 'cocos2d::Object': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\deprecated/CCDeprecated.h(539): note: 参见“cocos2d::Object”的声明
+..\Classes\gamelayer.cpp(780): warning C4996: 'CocosDenshion::SimpleAudioEngine::sharedEngine': 被声明为已否决
+  D:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\audio\include\SimpleAudioEngine.h(70): note: 参见“CocosDenshion::SimpleAudioEngine::sharedEngine”的声明
+..\Classes\gamelayer.cpp(783): warning C4996: 'CocosDenshion::SimpleAudioEngine::sharedEngine': 被声明为已否决
+  D:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\audio\include\SimpleAudioEngine.h(70): note: 参见“CocosDenshion::SimpleAudioEngine::sharedEngine”的声明
+  HelloWorldScene.cpp
+  loadlayer.cpp
+  mainLayer.cpp
+  Player_ai.cpp
+d:\mygame\newtest\classes\mainLayer.h(14): warning C4996: 'cocos2d::Object': 被声明为已否决 (编译源文件 ..\Classes\loadlayer.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\deprecated/CCDeprecated.h(539): note: 参见“cocos2d::Object”的声明 (编译源文件 ..\Classes\loadlayer.cpp)
+d:\mygame\newtest\classes\mainLayer.h(14): warning C4996: 'cocos2d::Object': 被声明为已否决 (编译源文件 ..\Classes\mainLayer.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\deprecated/CCDeprecated.h(539): note: 参见“cocos2d::Object”的声明 (编译源文件 ..\Classes\mainLayer.cpp)
+..\Classes\mainLayer.cpp(23): warning C4996: 'cocos2d::Object': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\deprecated/CCDeprecated.h(539): note: 参见“cocos2d::Object”的声明
+..\Classes\mainLayer.cpp(27): warning C4996: 'CocosDenshion::SimpleAudioEngine::sharedEngine': 被声明为已否决
+  D:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\audio\include\SimpleAudioEngine.h(70): note: 参见“CocosDenshion::SimpleAudioEngine::sharedEngine”的声明
+..\Classes\mainLayer.cpp(30): warning C4996: 'CocosDenshion::SimpleAudioEngine::sharedEngine': 被声明为已否决
+  D:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\audio\include\SimpleAudioEngine.h(70): note: 参见“CocosDenshion::SimpleAudioEngine::sharedEngine”的声明
+..\Classes\mainLayer.cpp(40): warning C4996: 'cocos2d::Label::create': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabel.h(461): note: 参见“cocos2d::Label::create”的声明
+..\Classes\mainLayer.cpp(41): warning C4996: 'cocos2d::Label::create': 被声明为已否决
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabel.h(461): note: 参见“cocos2d::Label::create”的声明
+..\Classes\mainLayer.cpp(50): warning C4996: 'CocosDenshion::SimpleAudioEngine::sharedEngine': 被声明为已否决
+  D:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\audio\include\SimpleAudioEngine.h(70): note: 参见“CocosDenshion::SimpleAudioEngine::sharedEngine”的声明
+d:\mygame\newtest\classes\countDownBar.h(14): warning C4996: 'cocos2d::LabelTTF': 被声明为已否决 (编译源文件 ..\Classes\Player_ai.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(67): note: 参见“cocos2d::LabelTTF”的声明 (编译源文件 ..\Classes\Player_ai.cpp)
+d:\mygame\newtest\classes\gamelayer.h(98): warning C4996: 'cocos2d::Object': 被声明为已否决 (编译源文件 ..\Classes\Player_ai.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\deprecated/CCDeprecated.h(539): note: 参见“cocos2d::Object”的声明 (编译源文件 ..\Classes\Player_ai.cpp)
+d:\mygame\newtest\classes\Figure.h(57): warning C4996: 'cocos2d::LabelTTF': 被声明为已否决 (编译源文件 ..\Classes\Player_ai.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(67): note: 参见“cocos2d::LabelTTF”的声明 (编译源文件 ..\Classes\Player_ai.cpp)
+d:\mygame\newtest\classes\Figure.h(58): warning C4996: 'cocos2d::LabelTTF': 被声明为已否决 (编译源文件 ..\Classes\Player_ai.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(67): note: 参见“cocos2d::LabelTTF”的声明 (编译源文件 ..\Classes\Player_ai.cpp)
+d:\mygame\newtest\classes\Figure.h(59): warning C4996: 'cocos2d::LabelTTF': 被声明为已否决 (编译源文件 ..\Classes\Player_ai.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(67): note: 参见“cocos2d::LabelTTF”的声明 (编译源文件 ..\Classes\Player_ai.cpp)
+d:\mygame\newtest\classes\Figure.h(60): warning C4996: 'cocos2d::LabelTTF': 被声明为已否决 (编译源文件 ..\Classes\Player_ai.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(67): note: 参见“cocos2d::LabelTTF”的声明 (编译源文件 ..\Classes\Player_ai.cpp)
+d:\mygame\newtest\classes\Figure.h(61): warning C4996: 'cocos2d::LabelTTF': 被声明为已否决 (编译源文件 ..\Classes\Player_ai.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(67): note: 参见“cocos2d::LabelTTF”的声明 (编译源文件 ..\Classes\Player_ai.cpp)
+  Player_one.cpp
+  Player_se.cpp
+  SceneManager.cpp
+  serverlayer.cpp
+d:\mygame\newtest\classes\countDownBar.h(14): warning C4996: 'cocos2d::LabelTTF': 被声明为已否决 (编译源文件 ..\Classes\Player_one.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(67): note: 参见“cocos2d::LabelTTF”的声明 (编译源文件 ..\Classes\Player_one.cpp)
+d:\mygame\newtest\classes\gamelayer.h(98): warning C4996: 'cocos2d::Object': 被声明为已否决 (编译源文件 ..\Classes\Player_one.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\deprecated/CCDeprecated.h(539): note: 参见“cocos2d::Object”的声明 (编译源文件 ..\Classes\Player_one.cpp)
+d:\mygame\newtest\classes\Figure.h(57): warning C4996: 'cocos2d::LabelTTF': 被声明为已否决 (编译源文件 ..\Classes\Player_one.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(67): note: 参见“cocos2d::LabelTTF”的声明 (编译源文件 ..\Classes\Player_one.cpp)
+d:\mygame\newtest\classes\Figure.h(58): warning C4996: 'cocos2d::LabelTTF': 被声明为已否决 (编译源文件 ..\Classes\Player_one.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(67): note: 参见“cocos2d::LabelTTF”的声明 (编译源文件 ..\Classes\Player_one.cpp)
+d:\mygame\newtest\classes\Figure.h(59): warning C4996: 'cocos2d::LabelTTF': 被声明为已否决 (编译源文件 ..\Classes\Player_one.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(67): note: 参见“cocos2d::LabelTTF”的声明 (编译源文件 ..\Classes\Player_one.cpp)
+d:\mygame\newtest\classes\Figure.h(60): warning C4996: 'cocos2d::LabelTTF': 被声明为已否决 (编译源文件 ..\Classes\Player_one.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(67): note: 参见“cocos2d::LabelTTF”的声明 (编译源文件 ..\Classes\Player_one.cpp)
+d:\mygame\newtest\classes\Figure.h(61): warning C4996: 'cocos2d::LabelTTF': 被声明为已否决 (编译源文件 ..\Classes\Player_one.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(67): note: 参见“cocos2d::LabelTTF”的声明 (编译源文件 ..\Classes\Player_one.cpp)
+d:\mygame\newtest\classes\countDownBar.h(14): warning C4996: 'cocos2d::LabelTTF': 被声明为已否决 (编译源文件 ..\Classes\Player_se.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(67): note: 参见“cocos2d::LabelTTF”的声明 (编译源文件 ..\Classes\Player_se.cpp)
+d:\mygame\newtest\classes\gamelayer.h(98): warning C4996: 'cocos2d::Object': 被声明为已否决 (编译源文件 ..\Classes\Player_se.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\deprecated/CCDeprecated.h(539): note: 参见“cocos2d::Object”的声明 (编译源文件 ..\Classes\Player_se.cpp)
+d:\mygame\newtest\classes\mainLayer.h(14): warning C4996: 'cocos2d::Object': 被声明为已否决 (编译源文件 ..\Classes\SceneManager.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\deprecated/CCDeprecated.h(539): note: 参见“cocos2d::Object”的声明 (编译源文件 ..\Classes\SceneManager.cpp)
+d:\mygame\newtest\classes\Figure.h(57): warning C4996: 'cocos2d::LabelTTF': 被声明为已否决 (编译源文件 ..\Classes\Player_se.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(67): note: 参见“cocos2d::LabelTTF”的声明 (编译源文件 ..\Classes\Player_se.cpp)
+d:\mygame\newtest\classes\Figure.h(58): warning C4996: 'cocos2d::LabelTTF': 被声明为已否决 (编译源文件 ..\Classes\Player_se.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(67): note: 参见“cocos2d::LabelTTF”的声明 (编译源文件 ..\Classes\Player_se.cpp)
+d:\mygame\newtest\classes\Figure.h(59): warning C4996: 'cocos2d::LabelTTF': 被声明为已否决 (编译源文件 ..\Classes\Player_se.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(67): note: 参见“cocos2d::LabelTTF”的声明 (编译源文件 ..\Classes\Player_se.cpp)
+d:\mygame\newtest\classes\Figure.h(60): warning C4996: 'cocos2d::LabelTTF': 被声明为已否决 (编译源文件 ..\Classes\Player_se.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(67): note: 参见“cocos2d::LabelTTF”的声明 (编译源文件 ..\Classes\Player_se.cpp)
+d:\mygame\newtest\classes\Figure.h(61): warning C4996: 'cocos2d::LabelTTF': 被声明为已否决 (编译源文件 ..\Classes\Player_se.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(67): note: 参见“cocos2d::LabelTTF”的声明 (编译源文件 ..\Classes\Player_se.cpp)
+d:\mygame\newtest\classes\Figure.h(57): warning C4996: 'cocos2d::LabelTTF': 被声明为已否决 (编译源文件 ..\Classes\SceneManager.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(67): note: 参见“cocos2d::LabelTTF”的声明 (编译源文件 ..\Classes\SceneManager.cpp)
+d:\mygame\newtest\classes\Figure.h(58): warning C4996: 'cocos2d::LabelTTF': 被声明为已否决 (编译源文件 ..\Classes\SceneManager.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(67): note: 参见“cocos2d::LabelTTF”的声明 (编译源文件 ..\Classes\SceneManager.cpp)
+d:\mygame\newtest\classes\Figure.h(59): warning C4996: 'cocos2d::LabelTTF': 被声明为已否决 (编译源文件 ..\Classes\SceneManager.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(67): note: 参见“cocos2d::LabelTTF”的声明 (编译源文件 ..\Classes\SceneManager.cpp)
+d:\mygame\newtest\classes\Figure.h(60): warning C4996: 'cocos2d::LabelTTF': 被声明为已否决 (编译源文件 ..\Classes\SceneManager.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(67): note: 参见“cocos2d::LabelTTF”的声明 (编译源文件 ..\Classes\SceneManager.cpp)
+d:\mygame\newtest\classes\Figure.h(61): warning C4996: 'cocos2d::LabelTTF': 被声明为已否决 (编译源文件 ..\Classes\SceneManager.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(67): note: 参见“cocos2d::LabelTTF”的声明 (编译源文件 ..\Classes\SceneManager.cpp)
+d:\mygame\newtest\classes\countDownBar.h(14): warning C4996: 'cocos2d::LabelTTF': 被声明为已否决 (编译源文件 ..\Classes\SceneManager.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\2d/CCLabelTTF.h(67): note: 参见“cocos2d::LabelTTF”的声明 (编译源文件 ..\Classes\SceneManager.cpp)
+d:\mygame\newtest\classes\gamelayer.h(98): warning C4996: 'cocos2d::Object': 被声明为已否决 (编译源文件 ..\Classes\SceneManager.cpp)
+  d:\cocos_framework\frameworks\cocos2d-x-3.9\cocos\deprecated/CCDeprecated.h(539): note: 参见“cocos2d::Object”的声明 (编译源文件 ..\Classes\SceneManager.cpp)
+  TiledMap.cpp
+  main.cpp
+  复制了 60 个文件
+    正在创建库 D:\MyGame\newTest\proj.win32\Release.win32\newTest.lib 和对象 D:\MyGame\newTest\proj.win32\Release.win32\newTest.exp
+  正在生成代码
+  All 2627 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  已完成代码的生成
+  newTest.vcxproj -> D:\MyGame\newTest\proj.win32\Release.win32\newTest.exe
+  newTest.vcxproj -> D:\MyGame\newTest\proj.win32\Release.win32\newTest.pdb (Full PDB)
+  D:\MyGame\newTest\Resources\arial.ttf -> D:\MyGame\newTest\proj.win32\Release.win32\arial.ttf
+  D:\MyGame\newTest\Resources\atestbox.png -> D:\MyGame\newTest\proj.win32\Release.win32\atestbox.png
+  D:\MyGame\newTest\Resources\background.png -> D:\MyGame\newTest\proj.win32\Release.win32\background.png
+  D:\MyGame\newTest\Resources\bar.png -> D:\MyGame\newTest\proj.win32\Release.win32\bar.png
+  D:\MyGame\newTest\Resources\barBG.png -> D:\MyGame\newTest\proj.win32\Release.win32\barBG.png
+  D:\MyGame\newTest\Resources\BeginScene.png -> D:\MyGame\newTest\proj.win32\Release.win32\BeginScene.png
+  D:\MyGame\newTest\Resources\BeginScene2.png -> D:\MyGame\newTest\proj.win32\Release.win32\BeginScene2.png
+  D:\MyGame\newTest\Resources\BG.png -> D:\MyGame\newTest\proj.win32\Release.win32\BG.png
+  D:\MyGame\newTest\Resources\bg1.mp3 -> D:\MyGame\newTest\proj.win32\Release.win32\bg1.mp3
+  D:\MyGame\newTest\Resources\bg2.mp3 -> D:\MyGame\newTest\proj.win32\Release.win32\bg2.mp3
+  D:\MyGame\newTest\Resources\bg2.png -> D:\MyGame\newTest\proj.win32\Release.win32\bg2.png
+  D:\MyGame\newTest\Resources\bg3.mp3 -> D:\MyGame\newTest\proj.win32\Release.win32\bg3.mp3
+  D:\MyGame\newTest\Resources\BGforandroid.png -> D:\MyGame\newTest\proj.win32\Release.win32\BGforandroid.png
+  D:\MyGame\newTest\Resources\bomb.plist -> D:\MyGame\newTest\proj.win32\Release.win32\bomb.plist
+  D:\MyGame\newTest\Resources\bomb.png -> D:\MyGame\newTest\proj.win32\Release.win32\bomb.png
+  D:\MyGame\newTest\Resources\bomb1.png -> D:\MyGame\newTest\proj.win32\Release.win32\bomb1.png
+  D:\MyGame\newTest\Resources\bomb2.png -> D:\MyGame\newTest\proj.win32\Release.win32\bomb2.png
+  D:\MyGame\newTest\Resources\bombButton.png -> D:\MyGame\newTest\proj.win32\Release.win32\bombButton.png
+  D:\MyGame\newTest\Resources\bombbutton1.png -> D:\MyGame\newTest\proj.win32\Release.win32\bombbutton1.png
+  D:\MyGame\newTest\Resources\bombbutton2.png -> D:\MyGame\newTest\proj.win32\Release.win32\bombbutton2.png
+  D:\MyGame\newTest\Resources\button.png -> D:\MyGame\newTest\proj.win32\Release.win32\button.png
+  D:\MyGame\newTest\Resources\camp.png -> D:\MyGame\newTest\proj.win32\Release.win32\camp.png
+  D:\MyGame\newTest\Resources\chooseFigure1.png -> D:\MyGame\newTest\proj.win32\Release.win32\chooseFigure1.png
+  D:\MyGame\newTest\Resources\chooseFigure2.png -> D:\MyGame\newTest\proj.win32\Release.win32\chooseFigure2.png
+  D:\MyGame\newTest\Resources\chooseFigure2p1.png -> D:\MyGame\newTest\proj.win32\Release.win32\chooseFigure2p1.png
+  D:\MyGame\newTest\Resources\chooseFigure2p2.png -> D:\MyGame\newTest\proj.win32\Release.win32\chooseFigure2p2.png
+  D:\MyGame\newTest\Resources\chooseFigure2p3.png -> D:\MyGame\newTest\proj.win32\Release.win32\chooseFigure2p3.png
+  D:\MyGame\newTest\Resources\chooseFigure2p4.png -> D:\MyGame\newTest\proj.win32\Release.win32\chooseFigure2p4.png
+  D:\MyGame\newTest\Resources\chooseFigure3.png -> D:\MyGame\newTest\proj.win32\Release.win32\chooseFigure3.png
+  D:\MyGame\newTest\Resources\chooseFigure4.png -> D:\MyGame\newTest\proj.win32\Release.win32\chooseFigure4.png
+  D:\MyGame\newTest\Resources\chooseFigurebg.png -> D:\MyGame\newTest\proj.win32\Release.win32\chooseFigurebg.png
+  D:\MyGame\newTest\Resources\chooselayerbg.png -> D:\MyGame\newTest\proj.win32\Release.win32\chooselayerbg.png
+  D:\MyGame\newTest\Resources\chooseMap1.png -> D:\MyGame\newTest\proj.win32\Release.win32\chooseMap1.png
+  D:\MyGame\newTest\Resources\chooseMap2.png -> D:\MyGame\newTest\proj.win32\Release.win32\chooseMap2.png
+  D:\MyGame\newTest\Resources\chooseMap3.png -> D:\MyGame\newTest\proj.win32\Release.win32\chooseMap3.png
+  D:\MyGame\newTest\Resources\chooseMapbg.png -> D:\MyGame\newTest\proj.win32\Release.win32\chooseMapbg.png
+  D:\MyGame\newTest\Resources\client1.png -> D:\MyGame\newTest\proj.win32\Release.win32\client1.png
+  D:\MyGame\newTest\Resources\client2.png -> D:\MyGame\newTest\proj.win32\Release.win32\client2.png
+  D:\MyGame\newTest\Resources\CloseNormal.png -> D:\MyGame\newTest\proj.win32\Release.win32\CloseNormal.png
+  D:\MyGame\newTest\Resources\CloseSelected.png -> D:\MyGame\newTest\proj.win32\Release.win32\CloseSelected.png
+  D:\MyGame\newTest\Resources\CMakeLists.txt -> D:\MyGame\newTest\proj.win32\Release.win32\CMakeLists.txt
+  D:\MyGame\newTest\Resources\cookies.png -> D:\MyGame\newTest\proj.win32\Release.win32\cookies.png
+  D:\MyGame\newTest\Resources\dangMap1.png -> D:\MyGame\newTest\proj.win32\Release.win32\dangMap1.png
+  D:\MyGame\newTest\Resources\dangMap2.png -> D:\MyGame\newTest\proj.win32\Release.win32\dangMap2.png
+  D:\MyGame\newTest\Resources\dangmap3.png -> D:\MyGame\newTest\proj.win32\Release.win32\dangmap3.png
+  D:\MyGame\newTest\Resources\death.png -> D:\MyGame\newTest\proj.win32\Release.win32\death.png
+  D:\MyGame\newTest\Resources\double1.png -> D:\MyGame\newTest\proj.win32\Release.win32\double1.png
+  D:\MyGame\newTest\Resources\double2.png -> D:\MyGame\newTest\proj.win32\Release.win32\double2.png
+  D:\MyGame\newTest\Resources\draw.png -> D:\MyGame\newTest\proj.win32\Release.win32\draw.png
+  D:\MyGame\newTest\Resources\effect1.wav -> D:\MyGame\newTest\proj.win32\Release.win32\effect1.wav
+  D:\MyGame\newTest\Resources\effect2.wav -> D:\MyGame\newTest\proj.win32\Release.win32\effect2.wav
+  D:\MyGame\newTest\Resources\effect3.wav -> D:\MyGame\newTest\proj.win32\Release.win32\effect3.wav
+  D:\MyGame\newTest\Resources\effect4.wav -> D:\MyGame\newTest\proj.win32\Release.win32\effect4.wav
+  D:\MyGame\newTest\Resources\effect5.wav -> D:\MyGame\newTest\proj.win32\Release.win32\effect5.wav
+  D:\MyGame\newTest\Resources\effect6.wav -> D:\MyGame\newTest\proj.win32\Release.win32\effect6.wav
+  D:\MyGame\newTest\Resources\effect7.wav -> D:\MyGame\newTest\proj.win32\Release.win32\effect7.wav
+  D:\MyGame\newTest\Resources\effect8.wav -> D:\MyGame\newTest\proj.win32\Release.win32\effect8.wav
+  D:\MyGame\newTest\Resources\effect9.wav -> D:\MyGame\newTest\proj.win32\Release.win32\effect9.wav
+  D:\MyGame\newTest\Resources\figure.plist -> D:\MyGame\newTest\proj.win32\Release.win32\figure.plist
+  D:\MyGame\newTest\Resources\figure.png -> D:\MyGame\newTest\proj.win32\Release.win32\figure.png
+  D:\MyGame\newTest\Resources\finishscene.png -> D:\MyGame\newTest\proj.win32\Release.win32\finishscene.png
+  D:\MyGame\newTest\Resources\friend_00.png -> D:\MyGame\newTest\proj.win32\Release.win32\friend_00.png
+  D:\MyGame\newTest\Resources\friend_00_choose.png -> D:\MyGame\newTest\proj.win32\Release.win32\friend_00_choose.png
+  D:\MyGame\newTest\Resources\friend_01.png -> D:\MyGame\newTest\proj.win32\Release.win32\friend_01.png
+  D:\MyGame\newTest\Resources\friend_01_choose.png -> D:\MyGame\newTest\proj.win32\Release.win32\friend_01_choose.png
+  D:\MyGame\newTest\Resources\friend_03.png -> D:\MyGame\newTest\proj.win32\Release.win32\friend_03.png
+  D:\MyGame\newTest\Resources\friend_03_choose.png -> D:\MyGame\newTest\proj.win32\Release.win32\friend_03_choose.png
+  D:\MyGame\newTest\Resources\friend_05.png -> D:\MyGame\newTest\proj.win32\Release.win32\friend_05.png
+  D:\MyGame\newTest\Resources\friend_05_choose.png -> D:\MyGame\newTest\proj.win32\Release.win32\friend_05_choose.png
+  D:\MyGame\newTest\Resources\gamemap1.png -> D:\MyGame\newTest\proj.win32\Release.win32\gamemap1.png
+  D:\MyGame\newTest\Resources\ground.png -> D:\MyGame\newTest\proj.win32\Release.win32\ground.png
+  D:\MyGame\newTest\Resources\groundmap3.png -> D:\MyGame\newTest\proj.win32\Release.win32\groundmap3.png
+  D:\MyGame\newTest\Resources\HelloWorld.png -> D:\MyGame\newTest\proj.win32\Release.win32\HelloWorld.png
+  D:\MyGame\newTest\Resources\lose.png -> D:\MyGame\newTest\proj.win32\Release.win32\lose.png
+  D:\MyGame\newTest\Resources\map1(1).tmx -> D:\MyGame\newTest\proj.win32\Release.win32\map1(1).tmx
+  D:\MyGame\newTest\Resources\map1.png -> D:\MyGame\newTest\proj.win32\Release.win32\map1.png
+  D:\MyGame\newTest\Resources\map1.tmx -> D:\MyGame\newTest\proj.win32\Release.win32\map1.tmx
+  D:\MyGame\newTest\Resources\map1_choose.png -> D:\MyGame\newTest\proj.win32\Release.win32\map1_choose.png
+  D:\MyGame\newTest\Resources\map2.png -> D:\MyGame\newTest\proj.win32\Release.win32\map2.png
+  D:\MyGame\newTest\Resources\map2.tmx -> D:\MyGame\newTest\proj.win32\Release.win32\map2.tmx
+  D:\MyGame\newTest\Resources\map2_choose.png -> D:\MyGame\newTest\proj.win32\Release.win32\map2_choose.png
+  D:\MyGame\newTest\Resources\map3.png -> D:\MyGame\newTest\proj.win32\Release.win32\map3.png
+  D:\MyGame\newTest\Resources\map3.tmx -> D:\MyGame\newTest\proj.win32\Release.win32\map3.tmx
+  D:\MyGame\newTest\Resources\map_camp_tile6.png -> D:\MyGame\newTest\proj.win32\Release.win32\map_camp_tile6.png
+  D:\MyGame\newTest\Resources\newbombbutton.png -> D:\MyGame\newTest\proj.win32\Release.win32\newbombbutton.png
+  D:\MyGame\newTest\Resources\newbombbutton1.png -> D:\MyGame\newTest\proj.win32\Release.win32\newbombbutton1.png
+  D:\MyGame\newTest\Resources\off.png -> D:\MyGame\newTest\proj.win32\Release.win32\off.png
+  D:\MyGame\newTest\Resources\on.png -> D:\MyGame\newTest\proj.win32\Release.win32\on.png
+  D:\MyGame\newTest\Resources\Pic.rar -> D:\MyGame\newTest\proj.win32\Release.win32\Pic.rar
+  D:\MyGame\newTest\Resources\Resources.rar -> D:\MyGame\newTest\proj.win32\Release.win32\Resources.rar
+  D:\MyGame\newTest\Resources\return1.png -> D:\MyGame\newTest\proj.win32\Release.win32\return1.png
+  D:\MyGame\newTest\Resources\return2.png -> D:\MyGame\newTest\proj.win32\Release.win32\return2.png
+  D:\MyGame\newTest\Resources\rocker.png -> D:\MyGame\newTest\proj.win32\Release.win32\rocker.png
+  D:\MyGame\newTest\Resources\rockerBG.png -> D:\MyGame\newTest\proj.win32\Release.win32\rockerBG.png
+  D:\MyGame\newTest\Resources\rule.png -> D:\MyGame\newTest\proj.win32\Release.win32\rule.png
+  D:\MyGame\newTest\Resources\rules.png -> D:\MyGame\newTest\proj.win32\Release.win32\rules.png
+  D:\MyGame\newTest\Resources\server1.png -> D:\MyGame\newTest\proj.win32\Release.win32\server1.png
+  D:\MyGame\newTest\Resources\server2.png -> D:\MyGame\newTest\proj.win32\Release.win32\server2.png
+  D:\MyGame\newTest\Resources\single1.png -> D:\MyGame\newTest\proj.win32\Release.win32\single1.png
+  D:\MyGame\newTest\Resources\single2.png -> D:\MyGame\newTest\proj.win32\Release.win32\single2.png
+  D:\MyGame\newTest\Resources\start1.png -> D:\MyGame\newTest\proj.win32\Release.win32\start1.png
+  D:\MyGame\newTest\Resources\start2.png -> D:\MyGame\newTest\proj.win32\Release.win32\start2.png
+  D:\MyGame\newTest\Resources\Townbuilding.png -> D:\MyGame\newTest\proj.win32\Release.win32\Townbuilding.png
+  D:\MyGame\newTest\Resources\TownGround.png -> D:\MyGame\newTest\proj.win32\Release.win32\TownGround.png
+  D:\MyGame\newTest\Resources\unit_bombwater.png -> D:\MyGame\newTest\proj.win32\Release.win32\unit_bombwater.png
+  D:\MyGame\newTest\Resources\win.png -> D:\MyGame\newTest\proj.win32\Release.win32\win.png
+  D:\MyGame\newTest\Resources\res\HelloWorld.png -> D:\MyGame\newTest\proj.win32\Release.win32\res\HelloWorld.png
+  D:\MyGame\newTest\Resources\res\MainScene.csb -> D:\MyGame\newTest\proj.win32\Release.win32\res\MainScene.csb
+  复制了 108 个文件
